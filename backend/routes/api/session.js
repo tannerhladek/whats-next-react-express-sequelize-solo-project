@@ -9,7 +9,6 @@ const { User } = require('../../db/models');
 const router = express.Router();
 
 // LOG IN
-
 //log in validators
 const validateLogin = [
    check('credential')
@@ -43,13 +42,13 @@ router.post('/', validateLogin, asyncHandler(async (req, res, next) => {
    });
 }));
 
-// Log out
+// LOG OUT
 router.delete('/', (_req, res) => {
    res.clearCookie('token');
    return res.json({ message: 'success' });
 });
 
-// Restore session user
+// RESTORE SESSION USER
 router.get('/', restoreUser, (req, res) => {
    const { user } = req;
    if (user) {
