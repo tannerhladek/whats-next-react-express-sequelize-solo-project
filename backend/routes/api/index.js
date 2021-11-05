@@ -7,10 +7,10 @@ const router = express.Router();
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 
-// POST test route
-router.post('/test', function (req, res) {
-   res.json({ requestBody: req.body });
-});
+// // POST test route
+// router.post('/test', function (req, res) {
+//    res.json({ requestBody: req.body });
+// });
 
 
 module.exports = router;
