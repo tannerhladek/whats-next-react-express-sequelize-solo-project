@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 
 import { login } from '../../store/session'
 
-import './LoginForm.module.css';
+import styles from './LoginForm.module.css';
 
 
 const LoginFormPage = () => {

@@ -7,6 +7,7 @@ import { restoreUser } from './store/session'
 
 //component import
 import LoginFormPage from './components/LoginFormPage';
+import SignUpFormPage from './components/SignUpFormPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ function App() {
       <Switch>
         <Route path='/login'>
           <LoginFormPage />
+        </Route>
+        <Route path='/signup'>
+          <SignUpFormPage />
         </Route>
       </Switch>
     </>
