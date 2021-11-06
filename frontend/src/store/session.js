@@ -15,6 +15,21 @@ const removeUser = () => ({
 })
 
 // THUNK CREATORS
+// sign up
+export const signUp = (user) => async (dispatch) => {
+   const { username, email, password } = user;
+   const res = await csrfFetch('api/users', {
+      method: 'POST',
+      body: JSON.stringify({
+         username,
+         email,
+         password
+      })
+   });
+   const data = await res.json();
+   dispatch(setUser(data.user))
+};
+
 // login
 export const login = (user) => async (dispatch) => {
    const { credential, password } = user;
@@ -29,20 +44,18 @@ export const login = (user) => async (dispatch) => {
    dispatch(setUser(data.user));
 };
 
-// sign up
-export const signUp = (user) => async (dispatch) => {
-   const { username, email, password } = user;
-   const res = await csrfFetch('api/users', {
-      method: 'POST',
-      body: JSON.stringify({
-         username,
-         email,
-         password
-      })
-   });
-   const data = await res.json();
-   dispatch(setUser(data.user))
+// log out
+export const logout = () => async (dispatch) => {
+   const res = await csrfFetch('/api/session', {
+      method: "DELETE"
+   })
+   const data = await res.json()
+   if (data.message === 'success') {
+      return dispatch(removeUser())
+   }
 }
+
+
 
 // restore user
 export const restoreUser = () => async (dispatch) => {
@@ -69,7 +82,7 @@ const sessionReducer = (state = initialState, action) => {
       case (REMOVE_USER):
          newState = { ...state };
          newState.user = null;
-         return
+         return newState;
 
       default:
          return state;

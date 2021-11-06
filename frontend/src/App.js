@@ -8,25 +8,31 @@ import { restoreUser } from './store/session'
 //component import
 import LoginFormPage from './components/LoginFormPage';
 import SignUpFormPage from './components/SignUpFormPage';
+import NavigationBar from './components/Navigation/NavigationBar';
 
 function App() {
   const dispatch = useDispatch();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(restoreUser())
+      .then(() => setIsLoaded(true));
   }, [dispatch])
 
   return (
     <>
-      <div>WELCOME TO MY FIRST SOLO APP!</div>
-      <Switch>
-        <Route path='/login'>
-          <LoginFormPage />
-        </Route>
-        <Route path='/signup'>
-          <SignUpFormPage />
-        </Route>
-      </Switch>
+      <NavigationBar isLoaded={isLoaded} />
+
+      {isLoaded && (
+        <Switch>
+          <Route path="/login">
+            <LoginFormPage />
+          </Route>
+          <Route path="/signup">
+            <SignupFormPage />
+          </Route>
+        </Switch>
+      )}
     </>
   );
 }
