@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -29,7 +29,7 @@ function App() {
             <LoginFormPage />
           </Route>
           <Route path="/signup">
-            <SignupFormPage />
+            <SignUpFormPage />
           </Route>
         </Switch>
       )}
