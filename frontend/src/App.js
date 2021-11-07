@@ -20,7 +20,7 @@ function App() {
   }, [dispatch])
 
   return (
-    <>
+    <>›
       <NavigationBar isLoaded={isLoaded} />
 
       {isLoaded && (
