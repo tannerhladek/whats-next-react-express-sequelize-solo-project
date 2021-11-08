@@ -12,6 +12,10 @@ import { restoreCSRF, csrfFetch } from './store/csrf';
 
 import * as sessionActions from './store/session'
 
+// importing Modal context provider
+import { ModalProvider } from "./context/Modal";
+
+
 // CONFIGURE THE STORE
 const store = configureStore();
 
@@ -26,9 +30,11 @@ if (process.env.NODE_ENV !== 'production') {
 function Root() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ModalProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ModalProvider>
     </Provider>
   );
 }
