@@ -5,11 +5,25 @@ const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
 
   const User = sequelize.define('User', {
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 50]
+      },
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 50]
+      },
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [3, 30],
+        len: [3, 100],
         isNotEmail(value) {
           if (Validator.isEmail(value)) {
             throw new Error('Cannot be an email.');
@@ -87,7 +101,8 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.associate = function (models) {
-    // associations can be defined here
+    User.hasMany(models.Booking, { foreignKey: 'user_id', onDelete: 'CASCADE', hooks: true });
+    User.hasMany(models.Activity, { foreignKey: 'user_id', onDelete: 'CASCADE', hooks: true });
   };
 
   return User;

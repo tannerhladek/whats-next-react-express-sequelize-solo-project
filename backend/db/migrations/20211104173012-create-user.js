@@ -8,8 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      first_name: {
+        type: Sequelize.STRING(50),
+        allowNull: false,
+      },
+      last_name: {
+        type: Sequelize.STRING(50),
+        allowNull: false,
+      },
       username: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(100),
         allowNull: false,
         unique: true,
       },
