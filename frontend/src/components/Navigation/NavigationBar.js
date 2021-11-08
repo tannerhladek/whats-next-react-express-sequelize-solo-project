@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 
+// importing styles
+import styles from './NavBar.module.css';
+
 // import other components
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -26,7 +29,7 @@ const NavigationBar = ({ isLoaded }) => {
    }
 
    return (
-      <div>
+      <div className='nav-bar-container'>
          <ul>
             <li>
                <NavLink to='/'>Home</NavLink>
