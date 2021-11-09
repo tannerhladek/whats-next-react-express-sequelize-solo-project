@@ -9,7 +9,7 @@ const { User } = require('../../db/models');
 const router = express.Router();
 
 
-// RESTORE SESSION USER
+// RESTORE SESSION USER - allows us to refresh page and maintain user logged in status
 router.get('/', restoreUser, (req, res) => {
    const { user } = req;
    if (user) {
