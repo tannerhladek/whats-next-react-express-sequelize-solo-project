@@ -38,7 +38,7 @@
 }
 
 .loginFormContainer form > button:hover {
-   background-color: rgb(145, 233, 145);
+   background-color: rgb(91, 163, 91);
    color: white;
-   box-shadow:0 3px 3px 1px rgba(0,0,0,0.3);
+   box-shadow:0 3px 3px 1px rgba(0,0,0,0.1);
 }
