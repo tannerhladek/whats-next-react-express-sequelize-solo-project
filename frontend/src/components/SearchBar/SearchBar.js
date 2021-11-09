@@ -16,7 +16,7 @@ const SearchBar = () => {
    }
 
    return (
-      <div>
+      <>
          <input
             placeholder='Search...'
             className={styles.searchInput}
@@ -24,7 +24,7 @@ const SearchBar = () => {
             value={searchString}
             onChange={updateSearch}
          />
-      </div>
+      </>
    );
 };
 
