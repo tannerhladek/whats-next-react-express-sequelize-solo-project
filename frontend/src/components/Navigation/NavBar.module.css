@@ -56,5 +56,5 @@
 
 .navBarRight li > button:hover {
    box-shadow:0 2px 2px 1px rgba(0,0,0,0.1);
-   background-color: rgba(199, 45, 99, .8);
+   background-color: rgb(165, 38, 83);
 }
