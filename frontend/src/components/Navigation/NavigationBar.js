@@ -7,6 +7,7 @@ import styles from './NavBar.module.css';
 // import other components
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import SearchBar from '../SearchBar';
 
 
 const NavigationBar = ({ isLoaded }) => {
@@ -15,26 +16,39 @@ const NavigationBar = ({ isLoaded }) => {
    let sessionLinks;
    if (session.user) {
       sessionLinks = (
-         <div>
-            <ProfileButton user={session.user} />
-         </div>
+         <>
+            <li>
+               <ProfileButton user={session.user} />
+            </li>
+         </>
       )
    } else {
       sessionLinks = (
-         <div>
-            <NavLink to='/signup'>Sign Up</NavLink>
-            <LoginFormModal />
-         </div>
+         <>
+            <li>
+               <NavLink to='/signup'>Sign Up</NavLink>
+            </li>
+            <li>
+               <LoginFormModal />
+            </li>
+         </>
       )
    }
 
    return (
-      <div className='nav-bar-container'>
-         <ul>
+      <div className={styles.navBarContainer}>
+         <ul className={styles.navBarLeft}>
             <li>
                <NavLink to='/'>Home</NavLink>
-               {isLoaded && sessionLinks}
             </li>
+         </ul>
+         <ul className={styles.navBarMiddle}>
+            <li className={styles.searchInput}>
+               <SearchBar />
+            </li>
+         </ul>
+         <ul className={styles.navBarRight}>
+            {isLoaded && sessionLinks}
          </ul>
       </div>
    );

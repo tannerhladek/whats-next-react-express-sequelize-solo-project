@@ -1,12 +1,20 @@
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+   outline: 0;
+}
+
 body {
-   padding: 50px;
-   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+   font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+   background: #F1F2F3;
+
 }
 
 a {
-   color: #00B7FF;
+   text-decoration: none;
 }
 
-* {
-   box-sizing: border-box;
+a:hover {
+   color: #00B7FF;
 }
