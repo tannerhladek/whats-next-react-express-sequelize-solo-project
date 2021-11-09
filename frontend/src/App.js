@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import { restoreUser } from './store/session'
 
 //component import
-import SignUpFormPage from './components/SignUpFormPage';
 import NavigationBar from './components/Navigation/NavigationBar';
 
 function App() {
