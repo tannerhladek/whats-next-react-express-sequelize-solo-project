@@ -17,10 +17,12 @@ const removeUser = () => ({
 // THUNK CREATORS
 // sign up
 export const signUp = (user) => async (dispatch) => {
-   const { username, email, password } = user;
+   const { firstName, lastName, username, email, password } = user;
    const res = await csrfFetch('api/users', {
       method: 'POST',
       body: JSON.stringify({
+         firstName,
+         lastName,
          username,
          email,
          password

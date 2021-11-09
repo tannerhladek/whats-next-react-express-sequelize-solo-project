@@ -11,6 +11,12 @@ const router = express.Router();
 // SIGN UP
 //sign up validators
 const validateSignup = [
+   check('firstName')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a first name.'),
+   check('lastName')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a last name.'),
    check('email')
       .exists({ checkFalsy: true })
       .isEmail()
@@ -32,8 +38,14 @@ const validateSignup = [
 
 // sign up post route
 router.post('/', validateSignup, asyncHandler(async (req, res) => {
-   const { email, password, username } = req.body;
-   const user = await User.signup({ email, username, password });
+   const { firstName, lastName, email, password, username } = req.body;
+   const user = await User.signup({
+      firstName,
+      lastName,
+      email,
+      username,
+      password
+   });
 
    await setTokenCookie(res, user);
 

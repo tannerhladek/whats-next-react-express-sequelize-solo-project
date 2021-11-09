@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom'
 
+// thunk import
 import { login } from '../../store/session'
 
 import styles from './LoginForm.module.css'
@@ -28,7 +28,6 @@ const LoginForm = () => {
       <div className={styles.loginFormContainer}>
          <form
             onSubmit={handleSubmit}
-            className={styles.loginForm}
          >
             <ul>
                {errors.map((error, i) => (
@@ -41,7 +40,6 @@ const LoginForm = () => {
                value={credential}
                onChange={(e) => setCredential(e.target.value)}
                required
-               className={styles.loginFormInput}
             />
             <input
                type='password'
@@ -49,9 +47,8 @@ const LoginForm = () => {
                value={password}
                onChange={(e) => setPassword(e.target.value)}
                required
-               className={styles.loginFormInput}
             />
-            <button type='submit' id={styles.loginButton}>Log In</button>
+            <button type='submit'>Log In</button>
          </form>
       </div>
    );
