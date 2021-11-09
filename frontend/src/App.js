@@ -21,15 +21,15 @@ function App() {
   return (
     <div>
       <NavigationBar isLoaded={isLoaded} />
-      
 
-      {isLoaded && (
+
+      {/* {isLoaded && (
         <Switch>
           <Route path="/signup">
             <SignUpFormPage />
           </Route>
         </Switch>
-      )}
+      )} */}
     </div>
   );
 }

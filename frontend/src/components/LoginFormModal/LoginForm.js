@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom'
 
+// thunk import
 import { login } from '../../store/session'
 
 import styles from './LoginForm.module.css'
