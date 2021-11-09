@@ -12,7 +12,7 @@ const DemoUserButton = () => {
 
    return (
       <>
-         <button onClick={loginDemoUser}>Demo User</button>
+         <button onClick={loginDemoUser}>Demo</button>
       </>
    );
 };
