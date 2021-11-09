@@ -6,8 +6,9 @@ import styles from './NavBar.module.css';
 
 // import other components
 import ProfileButton from './ProfileButton';
+import DemoUserButton from './DemoButton';
 import LoginFormModal from '../LoginFormModal';
-import SignUpFormModal from '../SignUpFormPage';
+import SignUpFormModal from '../SignUpFormModal';
 import SearchBar from '../SearchBar';
 
 
@@ -26,6 +27,9 @@ const NavigationBar = ({ isLoaded }) => {
    } else {
       sessionLinks = (
          <>
+            <li>
+               <DemoUserButton />
+            </li>
             <li>
                <SignUpFormModal />
             </li>
