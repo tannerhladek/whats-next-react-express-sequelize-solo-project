@@ -16,15 +16,15 @@ const SearchBar = () => {
    }
 
    return (
-      <>
+      <div>
          <input
-            placeholer='Search...'
+            placeholder='Search...'
             className={styles.searchInput}
             type='text'
             value={searchString}
             onChange={updateSearch}
          />
-      </>
+      </div>
    );
 };
 

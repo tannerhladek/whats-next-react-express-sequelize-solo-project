@@ -42,11 +42,9 @@ const NavigationBar = ({ isLoaded }) => {
                <NavLink to='/'>Home</NavLink>
             </li>
          </ul>
-         <ul className={styles.navBarMiddle}>
-            <li className={styles.searchInput}>
-               <SearchBar />
-            </li>
-         </ul>
+         <div className={styles.navBarMiddle}>
+            <SearchBar />
+         </div>
          <ul className={styles.navBarRight}>
             {isLoaded && sessionLinks}
          </ul>

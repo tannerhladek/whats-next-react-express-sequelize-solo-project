@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom'
 
 import { login } from '../../store/session'
 
+import styles from './LoginForm.module.css'
+
 const LoginForm = () => {
    const dispatch = useDispatch();
 
@@ -23,32 +25,33 @@ const LoginForm = () => {
 
 
    return (
-      <div>
-         <form onSubmit={handleSubmit}>
+      <div className={styles.loginFormContainer}>
+         <form
+            onSubmit={handleSubmit}
+            className={styles.loginForm}
+         >
             <ul>
                {errors.map((error, i) => (
                   <li key={i}>{error}</li>
                ))}
             </ul>
-            <label>
-               Username or Email
-               <input
-                  type='text'
-                  value={credential}
-                  onChange={(e) => setCredential(e.target.value)}
-                  required
-               />
-            </label>
-            <label>
-               Password
-               <input
-                  type='password'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-               />
-            </label>
-            <button type='submit'>Log In</button>
+            <input
+               type='text'
+               placeholder='Username or Email'
+               value={credential}
+               onChange={(e) => setCredential(e.target.value)}
+               required
+               className={styles.loginFormInput}
+            />
+            <input
+               type='password'
+               placeholder='Password'
+               value={password}
+               onChange={(e) => setPassword(e.target.value)}
+               required
+               className={styles.loginFormInput}
+            />
+            <button type='submit' id={styles.loginButton}>Log In</button>
          </form>
       </div>
    );

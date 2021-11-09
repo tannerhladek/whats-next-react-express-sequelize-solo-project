@@ -7,6 +7,8 @@
    background-color: white;
    box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%), 0 1px 4px rgb(0 0 0 / 10%);
    position: fixed;
+   padding-left: 40px;
+   padding-right: 40px;
 }
 
 .navBarContainer ul {
@@ -28,4 +30,3 @@
 .navBarRight li {
    padding-right: 5px;
 }
-
