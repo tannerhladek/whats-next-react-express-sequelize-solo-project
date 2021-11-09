@@ -14,8 +14,8 @@ const loadActivities = (activities) => ({
 // DEFINE THUNK CREATORS
 export const getActivities = () => async (dispatch) => {
    const res = await csrfFetch('/api/activities');
-   const activities = await res.json();
-   dispatch(loadActivities(activities));
+   const data = await res.json();
+   dispatch(loadActivities(data.activities));
 };
 
 // Define an initial state
@@ -23,7 +23,7 @@ const initialState = {};
 
 // Define a reducer
 const activitiesReducer = (state = initialState, action) => {
-   const newState = {};
+   let newState = {};
    switch (action.type) {
       case LOAD_ACTIVITIES:
          newState = {...state};

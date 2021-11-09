@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-// thunk inport
+// thunk import
 import { restoreUser } from './store/session'
 
 //component import
 import NavigationBar from './components/Navigation/NavigationBar';
+import SplashPage from './components/SplashPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,14 +22,14 @@ function App() {
     <div>
       <NavigationBar isLoaded={isLoaded} />
 
-
-      {/* {isLoaded && (
+      {isLoaded && (
         <Switch>
-          <Route path="/signup">
-            <SignUpFormPage />
+          <Route exact path="/">
+            <SplashPage />
           </Route>
         </Switch>
-      )} */}
+      )}
+      
     </div>
   );
 }
