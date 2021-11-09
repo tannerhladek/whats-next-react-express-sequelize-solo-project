@@ -39,7 +39,7 @@ const SignUpForm = () => {
    };
 
    return (
-      <div>
+      <div className={styles.signUpFormContainer}>
          <form onSubmit={handleSubmit}>
             <ul>
                {errors.map((error, i) => (
