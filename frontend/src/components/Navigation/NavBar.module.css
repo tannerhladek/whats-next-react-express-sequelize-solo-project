@@ -19,13 +19,26 @@
    padding-right: 5px;
 }
 
+.navBarLeft {
+   width: 25%;
+}
+
 .navBarMiddle {
+   display: flex;
+   align-items: center;
+   justify-content: center;
    width: 50%;
+}
+
+.navBarMiddle input {
+   width: 75%;
 }
 
 .navBarRight {
    display: flex;
+   justify-content: flex-end;
    align-items: center;
+   width: 25%;
 }
 
 .navBarRight li {
@@ -35,9 +48,13 @@
 .navBarRight li > button {
    padding: 5px;
    height: 20px;
+   background-color: rgb(199, 45, 99);
+   color: whitesmoke;
    transition-duration: .1s;
+   font-size: 8px;
 }
 
 .navBarRight li > button:hover {
-   box-shadow:0 2px 2px 1px rgba(0,0,0,0.2)
+   box-shadow:0 2px 2px 1px rgba(0,0,0,0.1);
+   background-color: rgba(199, 45, 99, .8);
 }
