@@ -1,12 +1,31 @@
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+}
+
 body {
-   padding: 50px;
-   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+   font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
+   background: #F1F2F3;
+
 }
 
 a {
-   color: #00B7FF;
+   text-decoration: none;
 }
 
-* {
-   box-sizing: border-box;
+a:hover {
+   color: #0b93c9;
+   transition-duration: .25s;
+}
+
+input, textarea, button {
+   font-family:inherit;
+   font-size: inherit;
+}
+
+button {
+   border: 0;
+   background-color: rgb(239, 239, 238);
+   border-radius: 5px;
 }

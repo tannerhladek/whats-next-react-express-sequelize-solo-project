@@ -21,6 +21,7 @@ function App() {
   return (
     <div>
       <NavigationBar isLoaded={isLoaded} />
+      
 
       {isLoaded && (
         <Switch>
