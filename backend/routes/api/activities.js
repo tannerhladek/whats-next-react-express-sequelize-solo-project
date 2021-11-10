@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { Activity, Activity_image } = require('../../db/models')
 
-const { requireAuth } = require('../../utils/auth');
+const { requireAuth, restoreUser } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation')
 
 const router = express.Router();
@@ -15,22 +15,39 @@ router.get('/', asyncHandler(async (req, res) => {
    return res.json({ activities })
 }));
 
+// TO DO - make activity creation validators
+// name, description, address, city, state, country, url
 
 // single activity POST route - creating new activity
 router.post('/', requireAuth, asyncHandler(async (req, res) => {
-   const { name, description, address, city, state, country } = req.body;
-   const user_id = req.session.user.id;
-   console.log('-------------------');
-   console.log(user_id);
-   console.log('-------------------');
-   return;
+   const { name, description, address, city, state, country, url } = req.body;
+   const user_id = req.user.id
+
+   const activity = await Activity.create({
+      name,
+      description,
+      address,
+      city,
+      state,
+      country,
+      user_id
+   });
+
+   const activityImage = await Activity_image.create({
+      activity_id: activity.id,
+      url
+   });
+
+   return res.json({ activity, activityImage })
 }));
 
 
 // single activity GET route - get the page for a single activity
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
    const activityId = req.params.id;
-   const activity = await Activity.findByPk(activityId);
+   const activity = await Activity.findByPk(activityId, {
+      include: Activity_image
+   });
    return res.json({ activity });
 }));
 
@@ -42,3 +59,18 @@ module.exports = router;
 // console.log('-------------------');
 // console.log(activity);
 // console.log('-------------------');
+
+
+// window.csrfFetch('/api/activities', {
+//    method: "POST",
+//    headers: { "Content-Type": "application/json" },
+//    body: JSON.stringify({
+//       name: "Test",
+//       description: "Testing this out",
+//       address: "123 Test",
+//       city: "Test City",
+//       state: "CA",
+//       country: "USA",
+//       url: 'https://cdn.pixabay.com/photo/2014/06/03/19/38/road-sign-361514_640.png'
+//    })
+// })

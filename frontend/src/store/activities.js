@@ -34,6 +34,20 @@ export const getOneActivity = (activityId) => async (dispatch) => {
    dispatch(loadOneActivity(data.activity))
 };
 
+// create an activity
+export const createActivity = (payload) => async (dispatch) => {
+   const res = await csrfFetch(`/api/activities`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+   });
+   const data = await res.json();
+
+   console.log('--------------')
+   console.log(data)
+   console.log('--------------')
+};
+
 
 // Define an initial state
 const initialState = {};
@@ -59,3 +73,15 @@ const activitiesReducer = (state = initialState, action) => {
 
 
 export default activitiesReducer;
+
+
+
+// window.store.dispatch(window.activityActions.createActivity({
+//    name: "Test",
+//       description: "Testing this out",
+//       address: "123 Test",
+//       city: "Test City",
+//       state: "CA",
+//       country: "USA",
+//       url: 'https://cdn.pixabay.com/photo/2014/06/03/19/38/road-sign-361514_640.png'
+// }))
