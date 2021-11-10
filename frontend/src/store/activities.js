@@ -32,7 +32,7 @@ export const getOneActivity = (activityId) => async (dispatch) => {
    const res = await csrfFetch(`/api/activities/${activityId}`);
    const data = await res.json();
    dispatch(loadOneActivity(data.activity))
-}
+};
 
 
 // Define an initial state

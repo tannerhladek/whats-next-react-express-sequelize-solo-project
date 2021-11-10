@@ -18,12 +18,12 @@ router.get('/', asyncHandler(async (req, res) => {
 
 // single activity POST route - creating new activity
 router.post('/', requireAuth, asyncHandler(async (req, res) => {
-   // const { name, description, address, city, state, country } = req.body;
-   // const user_id = req.session.user.id;
-   // console.log('-------------------');
-   // console.log(user_id);
-   // console.log('-------------------');
-   // return;
+   const { name, description, address, city, state, country } = req.body;
+   const user_id = req.session.user.id;
+   console.log('-------------------');
+   console.log(user_id);
+   console.log('-------------------');
+   return;
 }));
 
 
