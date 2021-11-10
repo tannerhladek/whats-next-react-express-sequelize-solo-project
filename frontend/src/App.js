@@ -8,6 +8,7 @@ import { restoreUser } from './store/session'
 //component import
 import NavigationBar from './components/Navigation/NavigationBar';
 import SplashPage from './components/SplashPage';
+import ActivityPage from './components/ActivityPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,9 +28,12 @@ function App() {
           <Route exact path="/">
             <SplashPage />
           </Route>
+          <Route path="/activities/:id">
+            <ActivityPage />
+          </Route>
         </Switch>
       )}
-      
+
     </div>
   );
 }

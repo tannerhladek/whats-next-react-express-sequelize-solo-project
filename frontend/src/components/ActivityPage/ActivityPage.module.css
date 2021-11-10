@@ -1,0 +1,9 @@
+.activityContainer {
+   position: relative;
+   top: 60px;
+}
+
+.activityImageContainer{
+   width: 500px;
+   overflow: none;
+}

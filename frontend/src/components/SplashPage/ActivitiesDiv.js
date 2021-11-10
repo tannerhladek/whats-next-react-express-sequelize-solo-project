@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 
 // thunk import
-import { getActivities } from "../../store/activities";
+import { getAllActivities } from "../../store/activities";
 
 // component import
 import ActivityCard from "./ActivityCard";
@@ -16,7 +16,7 @@ const ActivitiesDiv = () => {
    const [isLoaded, setIsLoaded] = useState(false);
 
    useEffect(() => {
-      dispatch(getActivities())
+      dispatch(getAllActivities())
          .then(() => setIsLoaded(true));
    }, [dispatch])
 
