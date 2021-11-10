@@ -35,6 +35,9 @@ function App() {
           <Route path="/activities/:id">
             <ActivityPage />
           </Route>
+          <Route path="/users/:id/activities">
+            <SplashPage />
+          </Route>
         </Switch>
       )}
 

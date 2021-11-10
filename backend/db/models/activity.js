@@ -39,9 +39,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Activity.associate = function(models) {
+    Activity.belongsTo(models.User, { foreignKey: 'user_id' });
     Activity.hasMany(models.Activity_image, { foreignKey: 'activity_id', onDelete: 'CASCADE', hooks: true });
     Activity.hasMany(models.Booking, { foreignKey: 'activity_id', onDelete: 'CASCADE', hooks: true });
-    Activity.belongsTo(models.User, { foreignKey: 'user_id' });
   };
   return Activity;
 };

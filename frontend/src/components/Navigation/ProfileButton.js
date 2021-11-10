@@ -45,6 +45,9 @@ const ProfileButton = ({user}) => {
                   <NavLink to='/activities/new'>Create Activity</NavLink>
                </li>
                <li>
+                  <NavLink to={`/users/${user.id}/activities`}>My Activities</NavLink>
+               </li>
+               <li>
                   <button onClick={signOut}>Log Out</button>
                </li>
             </ul>
