@@ -9,20 +9,23 @@
    /* justify-content: space-evenly; */
    align-items: center;
    flex-wrap: wrap;
+   padding-left: 30px;
+   padding-right: 30px;
 }
 
 .activityCard {
-   height: 250px;
-   width: 200px;
+   height: 400px;
+   width: 300px;
    margin: 10px;
    padding: 10px;
    border-radius: 10px;
-   box-shadow:0 2px 2px 1px rgba(0,0,0,0.1);
+   background-color: white;
    transition-duration: .25s;
 }
 
 .activityCard:hover {
-   transform: scale(1.05, 1.05);
+   transform: scale(1.02, 1.02);
+   box-shadow:0 2px 2px 1px rgba(0,0,0,0.1);
 }
 
 .activityCard > img {
