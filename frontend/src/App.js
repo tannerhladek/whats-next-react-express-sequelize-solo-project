@@ -10,6 +10,7 @@ import NavigationBar from './components/Navigation/NavigationBar';
 import SplashPage from './components/SplashPage';
 import ActivityPage from './components/ActivityPage';
 import CreateActivityForm from './components/CreateActivityForm';
+import UserActivitiesPage from './components/UserActivitiesPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ function App() {
             <ActivityPage />
           </Route>
           <Route path="/users/:id/activities">
-            <SplashPage />
+            <UserActivitiesPage />
           </Route>
         </Switch>
       )}
