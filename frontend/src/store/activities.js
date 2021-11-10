@@ -51,7 +51,8 @@ export const createActivity = (payload) => async (dispatch) => {
    });
    const data = await res.json();
 
-   dispatch(addOneActivity(data.activity, data.activityImage))
+   await dispatch(addOneActivity(data.activity, data.activityImage))
+   return data.activity;
 };
 
 
