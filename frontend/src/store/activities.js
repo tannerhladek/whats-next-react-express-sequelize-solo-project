@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 // ACTION TYPES CONST DECLARATIONS
 const LOAD_ALL = 'activities/LOAD_ALL';
 const LOAD_ONE = 'activities/LOAD_ONE';
+const ADD_ONE = 'activities/ADD_ONE'
 
 
 // ACTION CREATORS
@@ -16,6 +17,13 @@ const loadActivities = (activities) => ({
 const loadOneActivity = (activity) => ({
    type: LOAD_ONE,
    activity
+});
+
+// add one activity
+const addOneActivity = (activity, activityImage) => ({
+   type: ADD_ONE,
+   activity,
+   activityImage
 })
 
 
@@ -43,9 +51,7 @@ export const createActivity = (payload) => async (dispatch) => {
    });
    const data = await res.json();
 
-   console.log('--------------')
-   console.log(data)
-   console.log('--------------')
+   dispatch(addOneActivity(data.activity, data.activityImage))
 };
 
 
@@ -56,16 +62,24 @@ const initialState = {};
 const activitiesReducer = (state = initialState, action) => {
    let newState = {};
    switch (action.type) {
+
       case LOAD_ALL:
          newState = { ...state };
          action.activities.forEach(activity => {
             newState[activity.id] = activity
          });
          return newState;
+
       case LOAD_ONE:
          newState = { ...state };
          newState[action.activity.id] = action.activity;
          return newState;
+
+      case ADD_ONE:
+         newState= {...state};
+         newState[action.activity.id] = action.activity
+         return newState;
+
       default:
          return state
    }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import { logout } from '../../store/session';
 
@@ -40,6 +41,9 @@ const ProfileButton = ({user}) => {
             <ul className='profile-dropdown'>
                <li>{user.username}</li>
                <li>{user.email}</li>
+               <li>
+                  <NavLink to='/activities/new'>Create Activity</NavLink>
+               </li>
                <li>
                   <button onClick={signOut}>Log Out</button>
                </li>
