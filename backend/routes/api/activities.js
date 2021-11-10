@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Activity } = require('../../db/models')
+const { Activity, Activity_image } = require('../../db/models')
 
 const { requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation')
@@ -9,7 +9,9 @@ const router = express.Router();
 
 // activities GET route for splash page
 router.get('/', asyncHandler(async (req, res) => {
-   const activities = await Activity.findAll();
+   const activities = await Activity.findAll({
+      include: Activity_image
+   });
    return res.json({ activities })
 }));
 

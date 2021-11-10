@@ -26,7 +26,7 @@ const activitiesReducer = (state = initialState, action) => {
    let newState = {};
    switch (action.type) {
       case LOAD_ACTIVITIES:
-         newState = {...state};
+         newState = { ...state };
          action.activities.forEach(activity => {
             newState[activity.id] = activity
          });
