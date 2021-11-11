@@ -63,6 +63,19 @@ export const createActivity = (payload) => async (dispatch) => {
    return data.activity;
 };
 
+// edit an activity
+export const editActivity = (payload) => async (dispatch) => {
+   const activityId = payload.activity.id;
+   const res = await csrfFetch(`/api/activities/${activityId}`, {
+      method: "PUT",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+   });
+   const data = res.json();
+   await dispatch(addOneActivity(data.activity, data.activityImage))
+   return data.activity;
+};
+
 // delete an activity
 export const deleteActivity = (activityId) => async (dispatch) => {
    const res = await csrfFetch(`/api/activities/${activityId}`, {
@@ -70,7 +83,9 @@ export const deleteActivity = (activityId) => async (dispatch) => {
    });
    const data = await res.json()
    if (data.message) dispatch(removeOneActivity(activityId))
-}
+};
+
+
 
 
 // Define an initial state
