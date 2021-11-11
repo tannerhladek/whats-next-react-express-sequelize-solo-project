@@ -11,7 +11,7 @@ const ActivityPage = () => {
    const dispatch = useDispatch();
    const history = useHistory();
    const session = useSelector(state => state.session);
-   const activities = useSelector(state => state.activities)
+   const activityReviews = useSelector(state => state.activities.reviews);
 
    const [isLoaded, setIsLoaded] = useState(false);
    const [activity, setActivity] = useState({});

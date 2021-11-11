@@ -12,16 +12,16 @@ const EditActivityForm = () => {
    const dispatch = useDispatch();
 
    const { id: activityId } = useParams();
-   const activity = useSelector(state => state.activities[activityId])
+   const activity = useSelector(state => state.activities[activityId]);
 
    const [isLoaded, setIsLoaded] = useState(false);
-   const [name, setName] = useState(activity.name);
-   const [description, setDescription] = useState(activity.description);
-   const [address, setAddress] = useState(activity.address)
-   const [city, setCity] = useState(activity.city)
-   const [state, setState] = useState(activity.state)
-   const [country, setCountry] = useState(activity.country)
-   const [url, setImageUrl] = useState(activity.Activity_images[0].url)
+   const [name, setName] = useState(activity?.name);
+   const [description, setDescription] = useState(activity?.description);
+   const [address, setAddress] = useState(activity?.address)
+   const [city, setCity] = useState(activity?.city)
+   const [state, setState] = useState(activity?.state)
+   const [country, setCountry] = useState(activity?.country)
+   const [url, setImageUrl] = useState(activity?.Activity_images[0].url)
    const [errors, setErrors] = useState([]);
 
    useEffect(() => {
@@ -44,8 +44,7 @@ const EditActivityForm = () => {
 
       dispatch(editActivity(payload))
          .then((activity) => history.push(`/activities/${activity.id}`))
-   }
-
+   };
 
    return (
       <>

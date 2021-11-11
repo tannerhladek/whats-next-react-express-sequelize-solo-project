@@ -105,8 +105,11 @@ export const createReview = (payload) => async (dispatch) => {
       body: JSON.stringify(payload)
    });
    const data = await res.json();
-   dispatch(addOneReview(data));
-   return (data);
+
+   // console.log(data, '!!!!!!!!!!!!!!!!-----------');
+
+   dispatch(addOneReview(data.review));
+   return (data.review);
 };
 
 
@@ -145,14 +148,23 @@ const activitiesReducer = (state = initialState, action) => {
          return newState
 
       case ADD_ONE_REVIEW:
+         const activity_id = action.review.activity_id;
+
+         console.log(action.review);
+
+         if (!state[activity_id]) {
+            return { ...state, [activity_id]: { Reviews: [action.review] } };
+         }
+
          newState = { ...state };
-         newState[action.review.activity_id].Reviews.push(action.review);
+         newState[activity_id] = { Reviews: [...state[activity_id].Reviews, action.review] };
          return newState;
 
       default:
          return state
    }
 }
+
 
 
 export default activitiesReducer;
