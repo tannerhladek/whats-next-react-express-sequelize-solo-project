@@ -6,7 +6,7 @@ const { Op } = require('sequelize');
 
 const { setTokenCookie } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
-const { User, Activity } = require('../../db/models');
+const { User, Activity, Activity_image } = require('../../db/models');
 
 const router = express.Router();
 
@@ -64,7 +64,8 @@ router.get('/:id(\\d+)/activities', asyncHandler(async (req, res) => {
          user_id: {
             [Op.eq]: user_id
          }
-      }
+      },
+      include: Activity_image
    });
 
    return res.json({ activities });

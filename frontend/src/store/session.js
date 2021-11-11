@@ -81,7 +81,7 @@ export const getUserActivities = (userId) => async (dispatch) => {
 //INITIAL STATE
 const initialState = {
    user: null,
-   userActivities: null
+   userActivities: {}
 };
 
 // REDUCER
@@ -101,7 +101,12 @@ const sessionReducer = (state = initialState, action) => {
 
       case SET_USER_ACTIVITIES:
          newState = { ...state };
-         newState.userActivities = { ...newState.userActivities, ...action.activities};
+         console.log(action.activities);
+         console.log(newState);
+         action.activities.forEach(activity => {
+            console.log(newState.userActivities);
+            newState.userActivities[activity.id] = activity
+         });
          return newState;
 
       default:
