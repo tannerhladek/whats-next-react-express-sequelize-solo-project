@@ -31,3 +31,8 @@ button {
    background-color: rgb(239, 239, 238);
    border-radius: 5px;
 }
+
+main {
+   display: flex;
+   justify-content: center;
+}
