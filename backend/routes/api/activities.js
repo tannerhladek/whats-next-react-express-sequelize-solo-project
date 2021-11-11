@@ -52,6 +52,29 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
 }));
 
 
+
+// activity not found error function
+const activityNotFoundError = () => {
+   return new Error('Activity not found...')
+}
+
+// activity DELETE route
+router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res, next) => {
+   const userId = req.user.id;
+   const activityId = req.params.id
+
+   const activity = await Activity.findByPk(activityId);
+
+   if (activity && activity.user_id === userId) {
+      await activity.destroy();
+      return res.json({ message: `Activity ${activityId} has been destoyed` })
+   } else {
+      const error = activityNotFoundError();
+      next(error);
+   }
+}))
+
+
 module.exports = router;
 
 

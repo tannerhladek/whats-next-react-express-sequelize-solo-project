@@ -101,10 +101,7 @@ const sessionReducer = (state = initialState, action) => {
 
       case SET_USER_ACTIVITIES:
          newState = { ...state };
-         console.log(action.activities);
-         console.log(newState);
          action.activities.forEach(activity => {
-            console.log(newState.userActivities);
             newState.userActivities[activity.id] = activity
          });
          return newState;

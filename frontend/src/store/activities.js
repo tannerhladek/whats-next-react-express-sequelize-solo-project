@@ -3,7 +3,8 @@ import { csrfFetch } from "./csrf";
 // ACTION TYPES CONST DECLARATIONS
 const LOAD_ALL = 'activities/LOAD_ALL';
 const LOAD_ONE = 'activities/LOAD_ONE';
-const ADD_ONE = 'activities/ADD_ONE'
+const ADD_ONE = 'activities/ADD_ONE';
+const REMOVE_ONE = 'activities/REMOVE_ONE'
 
 
 // ACTION CREATORS
@@ -24,6 +25,12 @@ const addOneActivity = (activity, activityImage) => ({
    type: ADD_ONE,
    activity,
    activityImage
+});
+
+// remove one activity
+const removeOneActivity = (activityId) => ({
+   type: REMOVE_ONE,
+   activityId
 })
 
 
@@ -39,7 +46,11 @@ export const getAllActivities = () => async (dispatch) => {
 export const getOneActivity = (activityId) => async (dispatch) => {
    const res = await csrfFetch(`/api/activities/${activityId}`);
    const data = await res.json();
-   dispatch(loadOneActivity(data.activity))
+   console.log('----------');
+   console.log(data.activity);
+   console.log('-------------')
+   dispatch(loadOneActivity(data.activity));
+   return data.activity
 };
 
 // create an activity
@@ -54,6 +65,15 @@ export const createActivity = (payload) => async (dispatch) => {
    await dispatch(addOneActivity(data.activity, data.activityImage))
    return data.activity;
 };
+
+// delete an activity
+export const deleteActivity = (activityId) => async (dispatch) => {
+   const res = await csrfFetch(`/api/activities/${activityId}`, {
+      method: "DELETE"
+   });
+   const data = await res.json()
+   if (data.message) dispatch(removeOneActivity(activityId))
+}
 
 
 // Define an initial state
@@ -77,9 +97,14 @@ const activitiesReducer = (state = initialState, action) => {
          return newState;
 
       case ADD_ONE:
-         newState= {...state};
+         newState = { ...state };
          newState[action.activity.id] = action.activity
          return newState;
+
+      case REMOVE_ONE:
+         newState = { ...state };
+         delete newState.activities[action.activityId]
+         return newState
 
       default:
          return state
