@@ -23,7 +23,7 @@ function App() {
   }, [dispatch])
 
   return (
-    <div>
+    <main>
       <NavigationBar isLoaded={isLoaded} />
 
       {isLoaded && (
@@ -46,7 +46,7 @@ function App() {
         </Switch>
       )}
 
-    </div>
+    </main>
   );
 }
 

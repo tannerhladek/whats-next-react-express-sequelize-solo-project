@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, Redirect } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -10,6 +10,7 @@ import styles from './ActivityPage.module.css'
 const ActivityPage = () => {
    const dispatch = useDispatch();
    const history = useHistory();
+   const session = useSelector(state => state.session);
 
    const [isLoaded, setIsLoaded] = useState(false);
    const [activity, setActivity] = useState({});
@@ -21,7 +22,7 @@ const ActivityPage = () => {
          .then(() => setIsLoaded(true));
    }, [dispatch])
 
-   const { Activity_images, name, description, address, city, state, country } = activity;
+   const { Activity_images, name, description, address, city, state, country, user_id } = activity;
 
 
    const handleEdit = () => {
@@ -33,6 +34,18 @@ const ActivityPage = () => {
          .then(() => history.push('/'))
    }
 
+   let buttons;
+   if (session.user.id === user_id) {
+      buttons = (
+         <>
+            <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleDelete}>Delete</button>
+         </>
+      )
+   } else {
+      buttons = null;
+   }
+
    return (
       <>
          {isLoaded && (
@@ -40,15 +53,16 @@ const ActivityPage = () => {
                <div className={styles.activityImageContainer}>
                   <img src={Activity_images[0].url} />
                </div>
-               <div>{name}</div>
-               <div>{description}</div>
-               <div>{address}</div>
-               <div>{city}</div>
-               <div>{state}</div>
-               <div>{country}</div>
-               <div className={styles.buttonContainer}>
-                  <button onClick={handleEdit}>Edit</button>
-                  <button onClick={handleDelete}>Delete</button>
+               <div id={styles.activityName}>{name}</div>
+               <div id={styles.activityDescription}>{description}</div>
+               <div className={styles.activityLocationContainer}>
+                  <div>{address}</div>
+                  <div>{city}</div>
+                  <div>{state}</div>
+                  <div>{country}</div>
+               </div>
+               <div className={styles.activityButtonContainer}>
+                  {isLoaded && buttons}
                </div>
             </div>
          )}
