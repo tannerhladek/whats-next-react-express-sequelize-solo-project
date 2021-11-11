@@ -25,23 +25,23 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    lat: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    lng: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
+    // lat: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false
+    // },
+    // lng: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false
+    // },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
   }, {});
   Activity.associate = function(models) {
+    Activity.belongsTo(models.User, { foreignKey: 'user_id' });
     Activity.hasMany(models.Activity_image, { foreignKey: 'activity_id', onDelete: 'CASCADE', hooks: true });
     Activity.hasMany(models.Booking, { foreignKey: 'activity_id', onDelete: 'CASCADE', hooks: true });
-    Activity.belongsTo(models.User, { foreignKey: 'user_id' });
   };
   return Activity;
 };

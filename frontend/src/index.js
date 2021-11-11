@@ -10,7 +10,9 @@ import App from './App';
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 
+// importing store actions
 import * as sessionActions from './store/session'
+import * as activityActions from './store/activities'
 
 // importing Modal context provider
 import { ModalProvider } from "./context/Modal";
@@ -25,6 +27,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.csrfFetch = csrfFetch;
   window.store = store;
   window.sessionActions = sessionActions;
+  window.activityActions = activityActions;
 }
 
 function Root() {

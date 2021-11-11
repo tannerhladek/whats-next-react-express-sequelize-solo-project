@@ -19,6 +19,8 @@ const NavigationBar = ({ isLoaded }) => {
    if (session.user) {
       sessionLinks = (
          <>
+            {/* INSERT CREATE ACTIVITY BUTTON HERE??*/}
+
             <li>
                <ProfileButton user={session.user} />
             </li>

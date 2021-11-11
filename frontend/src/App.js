@@ -2,11 +2,16 @@ import { useEffect, useState } from 'react'
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-// thunk inport
+// thunk import
 import { restoreUser } from './store/session'
 
 //component import
 import NavigationBar from './components/Navigation/NavigationBar';
+import SplashPage from './components/SplashPage';
+import ActivityPage from './components/ActivityPage';
+import CreateActivityForm from './components/CreateActivityForm';
+import UserActivitiesPage from './components/UserActivitiesPage';
+import EditActivityForm from './components/EditActivityForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,14 +26,26 @@ function App() {
     <div>
       <NavigationBar isLoaded={isLoaded} />
 
-
-      {/* {isLoaded && (
+      {isLoaded && (
         <Switch>
-          <Route path="/signup">
-            <SignUpFormPage />
+          <Route exact path="/">
+            <SplashPage />
+          </Route>
+          <Route path="/activities/new">
+            <CreateActivityForm />
+          </Route>
+          <Route exact path="/activities/:id">
+            <ActivityPage />
+          </Route>
+          <Route path="/activities/:id/edit">
+            <EditActivityForm />
+          </Route>
+          <Route path="/users/:id/activities">
+            <UserActivitiesPage />
           </Route>
         </Switch>
-      )} */}
+      )}
+
     </div>
   );
 }

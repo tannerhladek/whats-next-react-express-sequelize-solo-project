@@ -2,9 +2,11 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
+const { Op } = require('sequelize');
+
 const { setTokenCookie } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
-const { User } = require('../../db/models');
+const { User, Activity, Activity_image } = require('../../db/models');
 
 const router = express.Router();
 
@@ -53,6 +55,23 @@ router.post('/', validateSignup, asyncHandler(async (req, res) => {
       user
    });
 }));
+
+// retrieving all of a given user's activities - GET route
+router.get('/:id(\\d+)/activities', asyncHandler(async (req, res) => {
+   const user_id = req.params.id;
+   const activities = await Activity.findAll({
+      where: {
+         user_id: {
+            [Op.eq]: user_id
+         }
+      },
+      include: Activity_image
+   });
+
+   return res.json({ activities });
+}));
+
+
 
 
 
