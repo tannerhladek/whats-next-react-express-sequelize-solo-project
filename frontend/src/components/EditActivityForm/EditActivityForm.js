@@ -14,7 +14,7 @@ const EditActivityForm = () => {
    const [isLoaded, setIsLoaded] = useState(false);
    const [activity, setActivity] = useState({});
 
-   const [name, setName] = useState(activity.name);
+   const [name, setName] = useState('');
    const [description, setDescription] = useState('');
    const [address, setAddress] = useState('');
    const [city, setCity] = useState('');
@@ -28,6 +28,15 @@ const EditActivityForm = () => {
    useEffect(() => {
       dispatch(getOneActivity(activityId))
          .then((activity) => setActivity(activity))
+         .then(() => {
+            setName(activity.name)
+            setDescription(activity.description)
+            setAddress(activity.address)
+            setCity(activity.city)
+            setState(activity.state)
+            setCountry(activity.country)
+            setImageUrl(activity.Activity_images[0].url)
+         })
          .then(() => setIsLoaded(true));
    }, [dispatch]);
 
