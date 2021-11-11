@@ -35,7 +35,7 @@ const ActivityPage = () => {
    }
 
    let buttons;
-   if (session.user.id === user_id) {
+   if (session.user && session.user.id === user_id) {
       buttons = (
          <>
             <button onClick={handleEdit}>Edit</button>
