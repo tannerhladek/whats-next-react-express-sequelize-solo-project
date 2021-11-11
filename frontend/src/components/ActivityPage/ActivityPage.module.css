@@ -3,7 +3,8 @@
    top: 60px;
 }
 
-.activityImageContainer{
+.activityImageContainer > img {
    width: 500px;
    overflow: none;
+   border-radius: 10px;
 }

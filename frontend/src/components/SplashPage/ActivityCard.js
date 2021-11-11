@@ -1,4 +1,4 @@
-import { useHistory, NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import styles from './SplashPage.module.css'
 

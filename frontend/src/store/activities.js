@@ -46,9 +46,6 @@ export const getAllActivities = () => async (dispatch) => {
 export const getOneActivity = (activityId) => async (dispatch) => {
    const res = await csrfFetch(`/api/activities/${activityId}`);
    const data = await res.json();
-   console.log('----------');
-   console.log(data.activity);
-   console.log('-------------')
    dispatch(loadOneActivity(data.activity));
    return data.activity
 };
@@ -103,7 +100,7 @@ const activitiesReducer = (state = initialState, action) => {
 
       case REMOVE_ONE:
          newState = { ...state };
-         delete newState.activities[action.activityId]
+         delete newState[action.activityId]
          return newState
 
       default:
