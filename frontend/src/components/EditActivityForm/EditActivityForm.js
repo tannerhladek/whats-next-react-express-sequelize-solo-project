@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
 
 // thunk imports
@@ -11,38 +11,28 @@ const EditActivityForm = () => {
    const history = useHistory();
    const dispatch = useDispatch();
 
-   const [isLoaded, setIsLoaded] = useState(false);
-   const [activity, setActivity] = useState({});
+   const { id: activityId } = useParams();
+   const activity = useSelector(state => state.activities[activityId])
 
-   const [name, setName] = useState('');
-   const [description, setDescription] = useState('');
-   const [address, setAddress] = useState('');
-   const [city, setCity] = useState('');
-   const [state, setState] = useState('');
-   const [country, setCountry] = useState('');
-   const [url, setImageUrl] = useState('');
+   const [isLoaded, setIsLoaded] = useState(false);
+   const [name, setName] = useState(activity.name);
+   const [description, setDescription] = useState(activity.description);
+   const [address, setAddress] = useState(activity.address)
+   const [city, setCity] = useState(activity.city)
+   const [state, setState] = useState(activity.state)
+   const [country, setCountry] = useState(activity.country)
+   const [url, setImageUrl] = useState(activity.Activity_images[0].url)
    const [errors, setErrors] = useState([]);
 
-
-   const { id: activityId } = useParams();
    useEffect(() => {
       dispatch(getOneActivity(activityId))
-         .then((activity) => setActivity(activity))
-         .then(() => {
-            setName(activity.name)
-            setDescription(activity.description)
-            setAddress(activity.address)
-            setCity(activity.city)
-            setState(activity.state)
-            setCountry(activity.country)
-            setImageUrl(activity.Activity_images[0].url)
-         })
          .then(() => setIsLoaded(true));
    }, [dispatch]);
 
    const handleSubmit = (e) => {
       e.preventDefault();
       const payload = {
+         activityId,
          name,
          description,
          address,

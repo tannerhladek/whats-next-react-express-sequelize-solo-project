@@ -65,13 +65,14 @@ export const createActivity = (payload) => async (dispatch) => {
 
 // edit an activity
 export const editActivity = (payload) => async (dispatch) => {
-   const activityId = payload.activity.id;
+
+   const activityId = payload.activityId;
    const res = await csrfFetch(`/api/activities/${activityId}`, {
       method: "PUT",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
    });
-   const data = res.json();
+   const data = await res.json();
    await dispatch(addOneActivity(data.activity, data.activityImage))
    return data.activity;
 };
@@ -110,6 +111,7 @@ const activitiesReducer = (state = initialState, action) => {
 
       case ADD_ONE:
          newState = { ...state };
+         action.activity = { ...action.activity, ...action.activityImage }
          newState[action.activity.id] = action.activity
          return newState;
 
