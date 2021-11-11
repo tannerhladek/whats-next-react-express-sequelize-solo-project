@@ -11,6 +11,7 @@ import SplashPage from './components/SplashPage';
 import ActivityPage from './components/ActivityPage';
 import CreateActivityForm from './components/CreateActivityForm';
 import UserActivitiesPage from './components/UserActivitiesPage';
+import EditActivityForm from './components/EditActivityForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -33,8 +34,11 @@ function App() {
           <Route path="/activities/new">
             <CreateActivityForm />
           </Route>
-          <Route path="/activities/:id">
+          <Route exact path="/activities/:id">
             <ActivityPage />
+          </Route>
+          <Route path="/activities/:id/edit">
+            <EditActivityForm />
           </Route>
           <Route path="/users/:id/activities">
             <UserActivitiesPage />

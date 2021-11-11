@@ -1,0 +1,22 @@
+.editActivityFormContainer {
+   padding-top: 60px;
+   width: 100%;
+   padding-left: 40px;
+   padding-right: 40px;
+   height: 600px;
+   display: flex;
+   justify-content: center;
+}
+
+.editActivityFormContainer > form {
+   width: 80%;
+   height: 600px;
+   display: flex;
+   flex-direction: column;
+}
+
+#editActivityFormButton {
+   height: 25px;
+   background-color: rgb(88, 184, 88);
+   color: rgba(255, 255, 255, .9);
+}

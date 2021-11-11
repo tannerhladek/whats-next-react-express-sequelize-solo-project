@@ -1,10 +1,9 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams, useHistory, Redirect } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 // import thunks
-import { getOneActivity } from "../../store/activities";
-import { deleteActivity } from "../../store/activities";
+import { getOneActivity, deleteActivity } from "../../store/activities";
 
 import styles from './ActivityPage.module.css'
 
@@ -13,10 +12,9 @@ const ActivityPage = () => {
    const history = useHistory();
 
    const [isLoaded, setIsLoaded] = useState(false);
-   const [activity, setActivity] = useState({})
+   const [activity, setActivity] = useState({});
 
    const { id: activityId } = useParams();
-
    useEffect(() => {
       dispatch(getOneActivity(activityId))
          .then((activity) => setActivity(activity))
@@ -27,7 +25,7 @@ const ActivityPage = () => {
 
 
    const handleEdit = () => {
-      // TO DO: write edit button function
+      return history.push(`/activities/${activityId}/edit`);
    };
 
    const handleDelete = () => {
