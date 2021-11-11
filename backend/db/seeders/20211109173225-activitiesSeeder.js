@@ -11,7 +11,7 @@ module.exports = {
         city: 'Venice',
         state: 'CA',
         country: 'United States',
-        user_id: 4
+        user_id: 1
       },
       {
         name: 'Zip-lining Mt. Baldy',
@@ -20,7 +20,7 @@ module.exports = {
         city: 'Mt Baldy',
         state: 'CA',
         country: 'United States',
-        user_id: 4
+        user_id: 1
       },
       {
         name: 'Walk the walk of Fame - a Hollywood Blvd tour',
@@ -29,7 +29,7 @@ module.exports = {
         city: 'Los Angeles',
         state: 'CA',
         country: 'United States',
-        user_id: 5
+        user_id: 2
       },
       {
         name: 'Bike the famous Santa Monica beach path',
@@ -38,7 +38,7 @@ module.exports = {
         city: 'Santa Monica',
         state: 'CA',
         country: 'United States',
-        user_id: 5
+        user_id: 2
       },
       {
         name: 'Come cheers with us - Santa Monica Brew Works',
@@ -47,7 +47,7 @@ module.exports = {
         city: 'Santa Monica',
         state: 'CA',
         country: 'United States',
-        user_id: 6
+        user_id: 3
       }
     ], {});
 
@@ -56,7 +56,7 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Activities', {
-      user_id: {[Op.in]: [4, 5, 6]}
+      user_id: {[Op.in]: [1, 2, 3]}
     }, {});
 
   }
