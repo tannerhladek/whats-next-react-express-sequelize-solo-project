@@ -4,7 +4,8 @@ import { csrfFetch } from "./csrf";
 const LOAD_ALL = 'activities/LOAD_ALL';
 const LOAD_ONE = 'activities/LOAD_ONE';
 const ADD_ONE = 'activities/ADD_ONE';
-const REMOVE_ONE = 'activities/REMOVE_ONE'
+const REMOVE_ONE = 'activities/REMOVE_ONE';
+const EDIT_ONE = 'activities/EDIT_ONE';
 
 
 // ACTION CREATORS
@@ -31,7 +32,13 @@ const addOneActivity = (activity, activityImage) => ({
 const removeOneActivity = (activityId) => ({
    type: REMOVE_ONE,
    activityId
-})
+});
+
+// const editOneActivity = (activity, activityImage) => ({
+//    type: EDIT_ONE,
+//    activity,
+//    activityImage
+// })
 
 
 // DEFINE THUNK CREATORS
@@ -83,7 +90,10 @@ export const deleteActivity = (activityId) => async (dispatch) => {
       method: "DELETE"
    });
    const data = await res.json()
-   if (data.message) dispatch(removeOneActivity(activityId))
+   if (data.message) {
+      dispatch(removeOneActivity(activityId))
+   }
+   return data.message;
 };
 
 
@@ -111,8 +121,10 @@ const activitiesReducer = (state = initialState, action) => {
 
       case ADD_ONE:
          newState = { ...state };
-         action.activity = { ...action.activity, ...action.activityImage }
-         newState[action.activity.id] = action.activity
+         newState[action.activity.id] = action.activity;
+         newState[action.activity.id].Activity_images = [];
+         // console.log('HERE!!!!!!!!!')
+         newState[action.activity.id].Activity_images.push(action.activityImage);
          return newState;
 
       case REMOVE_ONE:

@@ -30,7 +30,7 @@ const ActivityPage = () => {
 
    const handleDelete = () => {
       dispatch(deleteActivity(activity.id))
-      return history.push('/');
+         .then(() => history.push('/'))
    }
 
    return (
