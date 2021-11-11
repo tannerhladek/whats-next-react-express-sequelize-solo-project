@@ -5,7 +5,7 @@ const LOAD_ALL = 'activities/LOAD_ALL';
 const LOAD_ONE = 'activities/LOAD_ONE';
 const ADD_ONE = 'activities/ADD_ONE';
 const REMOVE_ONE = 'activities/REMOVE_ONE';
-const EDIT_ONE = 'activities/EDIT_ONE';
+const ADD_ONE_REVIEW = 'activities/ADD_ONE_REVIEW';
 
 
 // ACTION CREATORS
@@ -34,11 +34,11 @@ const removeOneActivity = (activityId) => ({
    activityId
 });
 
-// const editOneActivity = (activity, activityImage) => ({
-//    type: EDIT_ONE,
-//    activity,
-//    activityImage
-// })
+// add on review
+const addOneReview = (review) => ({
+   type: ADD_ONE_REVIEW,
+   review
+});
 
 
 // DEFINE THUNK CREATORS
@@ -98,17 +98,15 @@ export const deleteActivity = (activityId) => async (dispatch) => {
 
 // create a review
 export const createReview = (payload) => async (dispatch) => {
-   const activityId = payload.activityId;
+   const activityId = payload.activity_id;
    const res = await csrfFetch(`/api/activities/${activityId}/reviews`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
    });
    const data = await res.json();
-   console.log('-----------');
-   console.log(data.review);
-   console.log('-----------');
-
+   dispatch(addOneReview(data));
+   return (data);
 };
 
 
@@ -138,7 +136,6 @@ const activitiesReducer = (state = initialState, action) => {
          newState = { ...state };
          newState[action.activity.id] = action.activity;
          newState[action.activity.id].Activity_images = [];
-         // console.log('HERE!!!!!!!!!')
          newState[action.activity.id].Activity_images.push(action.activityImage);
          return newState;
 
@@ -146,6 +143,11 @@ const activitiesReducer = (state = initialState, action) => {
          newState = { ...state };
          delete newState[action.activityId]
          return newState
+
+      case ADD_ONE_REVIEW:
+         newState = { ...state };
+         newState[action.review.activity_id].Reviews.push(action.review);
+         return newState;
 
       default:
          return state
@@ -166,3 +168,10 @@ export default activitiesReducer;
 //       country: "USA",
 //       url: 'https://cdn.pixabay.com/photo/2014/06/03/19/38/road-sign-361514_640.png'
 // }))
+
+
+// window.store.dispatch(window.activityActions.createReview({
+//    user_id: 1,
+//    activity_id: 1,
+//    content: "This is testing my thunk!!!"
+// }));

@@ -123,8 +123,8 @@ router.post('/:id(\\d+)/reviews', requireAuth, asyncHandler(async (req, res) => 
       activity_id,
       content
    });
-   return res.json(review)
-}))
+   return res.json({ review })
+}));
 
 
 module.exports = router;
