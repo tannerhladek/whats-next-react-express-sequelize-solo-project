@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    aactivity_id: {
+    activity_id: {
       type: DataTypes.INTEGER,
       allowNull: false
     },

@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Activity, Activity_image } = require('../../db/models');
+const { Activity, Activity_image, Review } = require('../../db/models');
 
 const { Op } = require('sequelize');
 
@@ -21,8 +21,9 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
    const activityId = req.params.id;
    const activity = await Activity.findByPk(activityId, {
-      include: Activity_image
+      include: [Activity_image, Review]
    });
+   console.log(activity)
    return res.json({ activity });
 }));
 
@@ -108,6 +109,21 @@ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res, next) => 
       const error = activityNotFoundError();
       next(error);
    }
+}));
+
+
+// activity review creation
+router.post('/:id(\\d+)/reviews', requireAuth, asyncHandler(async (req, res) => {
+   const user_id = req.user.id;
+   const activity_id = req.params.id;
+   const { content } = req.body;
+
+   const review = await Review.create({
+      user_id,
+      activity_id,
+      content
+   });
+   return res.json(review)
 }))
 
 
@@ -145,5 +161,14 @@ module.exports = router;
 //       state: "CA",
 //       country: "USA",
 //       url: 'https://cdn.pixabay.com/photo/2014/06/03/19/38/road-sign-361514_640.png'
+//    })
+// });
+
+
+// window.csrfFetch('/api/activities/1/reviews', {
+//    method: "POST",
+//    headers: { "Content-Type": "application/json" },
+//    body: JSON.stringify({
+//       content: 'test review'
 //    })
 // });

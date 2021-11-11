@@ -96,6 +96,21 @@ export const deleteActivity = (activityId) => async (dispatch) => {
    return data.message;
 };
 
+// create a review
+export const createReview = (payload) => async (dispatch) => {
+   const activityId = payload.activityId;
+   const res = await csrfFetch(`/api/activities/${activityId}/reviews`, {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+   });
+   const data = await res.json();
+   console.log('-----------');
+   console.log(data.review);
+   console.log('-----------');
+
+};
+
 
 
 
