@@ -34,7 +34,7 @@ router.put('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
       await review.save();
       return res.json({ review })
    }
-}))
+}));
 
 
 // activity not found error function

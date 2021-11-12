@@ -126,6 +126,20 @@ export const deleteReview = (reviewId) => async (dispatch) => {
       dispatch(removeOneReview(reviewId, data.activity_id));
       return data.message;
    }
+};
+
+// edit a review
+export const editReview = (payload) => async (dispatch) => {
+   const reviewId = payload.id;
+   const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+      method: "PUT",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+   });
+
+   const data = await res.json();
+   
+   return data.review;
 }
 
 
@@ -210,3 +224,9 @@ export default activitiesReducer;
 // }));
 
 // window.store.dispatch(window.activityActions.deleteReview(27));
+
+// window.store.dispatch(window.activityActions.editReview({
+//    id: 4,
+//    activity_id: 1,
+//    content: "testing the edit thunk - EDITED!!!!"
+// }));
