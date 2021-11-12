@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, Redirect } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 // import thunks
 import { getOneActivity, deleteActivity } from "../../store/activities";
 
 import styles from './ActivityPage.module.css'
+import ReviewsDiv from "../ReviewsDiv";
 
 const ActivityPage = () => {
    const dispatch = useDispatch();
@@ -51,7 +52,7 @@ const ActivityPage = () => {
          {isLoaded && (
             <div className={styles.activityContainer}>
                <div className={styles.activityImageContainer}>
-                  <img src={Activity_images[0].url} />
+                  <img src={Activity_images[0].url} alt={name} />
                </div>
                <div id={styles.activityName}>{name}</div>
                <div id={styles.activityDescription}>{description}</div>
@@ -64,6 +65,7 @@ const ActivityPage = () => {
                <div className={styles.activityButtonContainer}>
                   {isLoaded && buttons}
                </div>
+               <ReviewsDiv activityId={activityId} user={session.user}/>
             </div>
          )}
       </>
