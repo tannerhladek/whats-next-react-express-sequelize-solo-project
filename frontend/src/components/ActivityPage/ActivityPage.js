@@ -21,7 +21,7 @@ const ActivityPage = () => {
       dispatch(getOneActivity(activityId))
          .then((activity) => setActivity(activity))
          .then(() => setIsLoaded(true));
-   }, [dispatch, activityId])
+   }, [dispatch])
 
    const { Activity_images, name, description, address, city, state, country, user_id } = activity;
 
@@ -65,7 +65,7 @@ const ActivityPage = () => {
                <div className={styles.activityButtonContainer}>
                   {isLoaded && buttons}
                </div>
-               <ReviewsDiv activityId={activityId}/>
+               <ReviewsDiv activityId={activityId} user={session.user}/>
             </div>
          )}
       </>

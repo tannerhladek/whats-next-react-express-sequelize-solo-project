@@ -106,8 +106,7 @@ export const deleteActivity = (activityId) => async (dispatch) => {
 
 // create a review
 export const createReview = (payload) => async (dispatch) => {
-   const activityId = payload.activity_id;
-   const res = await csrfFetch(`/api/activities/${activityId}/reviews`, {
+   const res = await csrfFetch(`/api/reviews`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -172,7 +171,7 @@ const activitiesReducer = (state = initialState, action) => {
          }
 
          newState = { ...state };
-         newState[activity_id] = { Reviews: [...state[activity_id].Reviews, action.review] };
+         newState[activity_id].Reviews = [...state[activity_id].Reviews, action.review];
          return newState;
 
       case REMOVE_ONE_REVIEW:

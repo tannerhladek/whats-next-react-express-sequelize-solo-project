@@ -13,7 +13,9 @@ const ReviewForm = ({ activityId }) => {
 
    const handleSubmit = async (e) => {
       e.preventDefault();
-      // const review =
+      const review = await dispatch(createReview({activityId, content: content}));
+      setContent('')
+      return;
    }
 
    return (
@@ -21,10 +23,10 @@ const ReviewForm = ({ activityId }) => {
          <form className={styles.reviewForm} onSubmit={handleSubmit}>
             <textarea
                id={styles.reviewContent}
-               onChange={setContent(content)}
+               onChange={(e) => setContent(e.target.value)}
                value={content}
             />
-            <button>Create Review</button>
+            <button>Post Review</button>
          </form>
       </div>
    );

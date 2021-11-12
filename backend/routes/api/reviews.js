@@ -12,11 +12,11 @@ const router = express.Router();
 // activity review creation
 router.post('/', requireAuth, asyncHandler(async (req, res) => {
    const user_id = req.user.id;
-   const { content, activity_id } = req.body;
+   const { content, activityId } = req.body;
 
    const review = await Review.create({
       user_id,
-      activity_id,
+      activity_id: activityId,
       content
    });
    return res.json({ review })
