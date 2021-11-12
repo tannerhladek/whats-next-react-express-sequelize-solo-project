@@ -112,19 +112,6 @@ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res, next) => 
 }));
 
 
-// activity review creation - review POST route - MAY NOT BE NEEDED!!!
-router.post('/:id(\\d+)/reviews', requireAuth, asyncHandler(async (req, res) => {
-   const user_id = req.user.id;
-   const activity_id = req.params.id;
-   const { content } = req.body;
-
-   const review = await Review.create({
-      user_id,
-      activity_id,
-      content
-   });
-   return res.json({ review })
-}));
 
 
 
