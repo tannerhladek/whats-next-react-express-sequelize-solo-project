@@ -8,10 +8,17 @@ const SingleReview = ({ review }) => {
    const session = useSelector(state => state.session);
 
 
+   // edit a review
 const handleEdit = () => {
    //  TO DO = creatid edit review function/thunk
+   return
+};
 
-}
+// delete a review
+const handleDelete = () => {
+   //  TO DO = creatid delete review function/thunk
+   return
+};
 
 
    let buttons

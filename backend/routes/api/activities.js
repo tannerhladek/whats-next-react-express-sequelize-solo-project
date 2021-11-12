@@ -4,7 +4,7 @@ const { Activity, Activity_image, Review } = require('../../db/models');
 
 const { Op } = require('sequelize');
 
-const { requireAuth, restoreUser } = require('../../utils/auth');
+const { requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation')
 
 const router = express.Router();
@@ -130,7 +130,7 @@ router.post('/:id(\\d+)/reviews', requireAuth, asyncHandler(async (req, res) => 
 module.exports = router;
 
 
-
+// For testing in the browser (browser testing) :)
 // console.log('-------------------');
 // console.log(activity);
 // console.log('-------------------');
