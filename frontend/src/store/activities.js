@@ -205,10 +205,12 @@ const activitiesReducer = (state = initialState, action) => {
 
       case EDIT_ONE_REVIEW:
          activity_id = action.review.activity_id;
+         console.log(activity_id, '--------------')
          newState = { ...state };
          reviewArr = newState[activity_id].Reviews;
          const index = reviewArr.findIndex(review => review.id === action.review.id);
-         reviewArr[index] = action.review
+         reviewArr[index] = { ...action.review };
+         newState[activity_id].Reviews = [...reviewArr];
          return newState;
 
       default:

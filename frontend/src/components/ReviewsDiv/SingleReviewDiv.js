@@ -4,16 +4,22 @@ import styles from './ReviewsDiv.module.css';
 
 // thunk imports
 import { deleteReview } from '../../store/activities';
+import { editReview } from '../../store/activities';
 
 const SingleReview = ({ review }) => {
    const dispatch = useDispatch();
-   const activities = useSelector(state => state.activities);
+   const reviews = useSelector(state => state.activities[review.activity_id].Reviews);
    const session = useSelector(state => state.session);
+
 
 
    // edit a review
    const handleEdit = () => {
-      //  TO DO = creatid edit review function/thunk
+      dispatch(editReview({
+         id: 4,
+         activity_id: 1,
+         content: " Will this work for me this time - test 503 ???!"
+      }))
       return
    };
 
