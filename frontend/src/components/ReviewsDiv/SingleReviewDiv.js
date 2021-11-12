@@ -2,23 +2,25 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import styles from './ReviewsDiv.module.css';
 
+// thunk imports
+import { deleteReview } from '../../store/activities';
+
 const SingleReview = ({ review }) => {
    const dispatch = useDispatch();
-   const reviewsArr = useSelector(state => state.activities);
+   const activities = useSelector(state => state.activities);
    const session = useSelector(state => state.session);
 
 
    // edit a review
-const handleEdit = () => {
-   //  TO DO = creatid edit review function/thunk
-   return
-};
+   const handleEdit = () => {
+      //  TO DO = creatid edit review function/thunk
+      return
+   };
 
-// delete a review
-const handleDelete = () => {
-   //  TO DO = creatid delete review function/thunk
-   return
-};
+   // delete a review
+   const handleDelete = () => {
+      dispatch(deleteReview(review.id))
+   };
 
 
    let buttons
@@ -26,7 +28,7 @@ const handleDelete = () => {
       buttons = (
          <>
             <button onClick={handleEdit}>Edit</button>
-            <button>Delete</button>
+            <button onClick={handleDelete}>Delete</button>
          </>
       )
    } else {

@@ -21,7 +21,7 @@ const ActivityPage = () => {
       dispatch(getOneActivity(activityId))
          .then((activity) => setActivity(activity))
          .then(() => setIsLoaded(true));
-   }, [dispatch])
+   }, [dispatch, activityId])
 
    const { Activity_images, name, description, address, city, state, country, user_id } = activity;
 
@@ -52,7 +52,7 @@ const ActivityPage = () => {
          {isLoaded && (
             <div className={styles.activityContainer}>
                <div className={styles.activityImageContainer}>
-                  <img src={Activity_images[0].url} />
+                  <img src={Activity_images[0].url} alt={name} />
                </div>
                <div id={styles.activityName}>{name}</div>
                <div id={styles.activityDescription}>{description}</div>
