@@ -9,6 +9,20 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 
+// activity review creation
+router.post('/', requireAuth, asyncHandler(async (req, res) => {
+   const user_id = req.user.id;
+   const { content, activity_id } = req.body;
+
+   const review = await Review.create({
+      user_id,
+      activity_id,
+      content
+   });
+   return res.json({ review })
+}));
+
+
 // activity not found error function
 const reviewNotFoundError = () => {
    return new Error('Review not found...')
@@ -43,4 +57,13 @@ module.exports = router;
 
 // window.csrfFetch('/api/reviews/17', {
 //    method: "DELETE"
+// });
+
+// window.csrfFetch('/api/reviews/', {
+//    method: "POST",
+//    headers: { "Content-Type": "application/json" },
+//    body: JSON.stringify({
+//       content: 'test review creation in the reviews router',
+//       activity_id: 1
+//    })
 // });
