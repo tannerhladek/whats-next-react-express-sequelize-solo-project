@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // thunk import
+import { editReview } from '../../store/activities';
 
 import styles from './EditReviewForm.module.css'
 
@@ -13,7 +14,7 @@ const EditReviewForm = ({ review }) => {
 
    const handleSubmit = async (e) => {
       e.preventDefault();
-
+      dispatch(editReview({content: content, id: review.id}))
       // const review = await
    }
 
