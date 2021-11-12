@@ -52,11 +52,10 @@
 }
 
 .activityButtonContainer {
-   margin-top: 10px;
    display: flex;
    align-self: flex-end;
    position: relative;
-   bottom: 31px;
+   bottom: 21px;
 }
 
 .activityButtonContainer > button {
