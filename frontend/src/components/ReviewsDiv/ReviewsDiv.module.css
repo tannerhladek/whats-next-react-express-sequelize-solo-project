@@ -17,6 +17,14 @@
    font-size: 8px;
 }
 
+/* .singleReviewButtonsContainer #reviewButton {
+   visibility: hidden;
+}
+
+.singleReviewContainer:hover > .singleReviewButtonContainer > #reviewButton{
+   visibility: visible;
+} */
+
 .singleReviewButtonsContainer > button:hover {
    box-shadow:0 2px 2px 1px rgba(0,0,0,0.1);
    background-color: rgb(165, 38, 83);

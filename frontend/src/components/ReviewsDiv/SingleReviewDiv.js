@@ -27,8 +27,8 @@ const SingleReview = ({ review }) => {
    if (session.user && review.user_id === session.user.id) {
       buttons = (
          <>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+            <button onClick={handleEdit} id={styles.reviewButton}>Edit</button>
+            <button onClick={handleDelete} id={styles.reviewButton}>Delete</button>
          </>
       )
    } else {
