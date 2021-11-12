@@ -6,6 +6,7 @@ const LOAD_ONE = 'activities/LOAD_ONE';
 const ADD_ONE = 'activities/ADD_ONE';
 const REMOVE_ONE = 'activities/REMOVE_ONE';
 const ADD_ONE_REVIEW = 'activities/ADD_ONE_REVIEW';
+const REMOVE_ONE_REVIEW = 'activities/REMOVE_ONE_REVIEW';
 
 
 // ACTION CREATORS
@@ -34,11 +35,17 @@ const removeOneActivity = (activityId) => ({
    activityId
 });
 
-// add on review
+// add one review
 const addOneReview = (review) => ({
    type: ADD_ONE_REVIEW,
    review
 });
+
+// remove one review
+const removeOneReview = (reviewId) => ({
+   type: REMOVE_ONE_REVIEW,
+   reviewId
+})
 
 
 // DEFINE THUNK CREATORS
@@ -92,8 +99,8 @@ export const deleteActivity = (activityId) => async (dispatch) => {
    const data = await res.json()
    if (data.message) {
       dispatch(removeOneActivity(activityId))
+      return data.message;
    }
-   return data.message;
 };
 
 // create a review
@@ -105,13 +112,21 @@ export const createReview = (payload) => async (dispatch) => {
       body: JSON.stringify(payload)
    });
    const data = await res.json();
-
-   // console.log(data, '!!!!!!!!!!!!!!!!-----------');
-
    dispatch(addOneReview(data.review));
    return (data.review);
 };
 
+// delete a review
+export const deleteReview = (reviewId) => async (dispatch) => {
+   const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+      method: "DELETE"
+   });
+   const data = await res.json();
+   if (data.message) {
+      dispatch(removeOneReview(reviewId));
+      return data.message;
+   }
+}
 
 
 
@@ -150,14 +165,17 @@ const activitiesReducer = (state = initialState, action) => {
       case ADD_ONE_REVIEW:
          const activity_id = action.review.activity_id;
 
-         console.log(action.review);
-
          if (!state[activity_id]) {
             return { ...state, [activity_id]: { Reviews: [action.review] } };
          }
 
          newState = { ...state };
          newState[activity_id] = { Reviews: [...state[activity_id].Reviews, action.review] };
+         return newState;
+
+      case REMOVE_ONE_REVIEW:
+         newState = { ...state };
+         console.log(newState);
          return newState;
 
       default:
@@ -187,3 +205,5 @@ export default activitiesReducer;
 //    activity_id: 1,
 //    content: "This is testing my thunk!!!"
 // }));
+
+// window.store.dispatch(window.activityActions.deleteReview(27));
