@@ -50,24 +50,27 @@ const ActivityPage = () => {
    return (
       <>
          {isLoaded && (
-            <div className={styles.activityContainer}>
-               <div className={styles.activityImageContainer}>
-                  <img src={Activity_images[0].url} alt={name} />
+            <div className={styles.activityPageContainer}>
+               <div className={styles.activityContainer}>
+                  <div id={styles.activityName}>{name}</div>
+                  <div className={styles.activityImageContainer} >
+                     <img src={Activity_images[0].url} alt={name} />
+                  </div>
+                  <div id={styles.activityDescription}>{description}</div>
+                  <div className={styles.activityLocationContainer}>
+                     <div id={styles.addressContainer}>{address}</div>
+                     <div>{city}</div>
+                     <div>{state}</div>
+                     <div>{country}</div>
+                  </div>
+                  <div className={styles.activityButtonContainer}>
+                     {isLoaded && buttons}
+                  </div>
                </div>
-               <div id={styles.activityName}>{name}</div>
-               <div id={styles.activityDescription}>{description}</div>
-               <div className={styles.activityLocationContainer}>
-                  <div>{address}</div>
-                  <div>{city}</div>
-                  <div>{state}</div>
-                  <div>{country}</div>
-               </div>
-               <div className={styles.activityButtonContainer}>
-                  {isLoaded && buttons}
-               </div>
-               <ReviewsDiv activityId={activityId} user={session.user}/>
+               <ReviewsDiv activityId={activityId} user={session.user} />
             </div>
-         )}
+   )
+}
       </>
    );
 };

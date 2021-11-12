@@ -23,30 +23,32 @@ function App() {
   }, [dispatch])
 
   return (
-    <main>
-      <NavigationBar isLoaded={isLoaded} />
-
-      {isLoaded && (
-        <Switch>
-          <Route exact path="/">
-            <SplashPage />
-          </Route>
-          <Route path="/activities/new">
-            <CreateActivityForm />
-          </Route>
-          <Route exact path="/activities/:id">
-            <ActivityPage />
-          </Route>
-          <Route path="/activities/:id/edit">
-            <EditActivityForm />
-          </Route>
-          <Route path="/users/:id/activities">
-            <UserActivitiesPage />
-          </Route>
-        </Switch>
-      )}
-
-    </main>
+    <>
+      <header>
+        <NavigationBar isLoaded={isLoaded} />
+      </header>
+      <main>
+        {isLoaded && (
+          <Switch>
+            <Route exact path="/">
+              <SplashPage />
+            </Route>
+            <Route path="/activities/new">
+              <CreateActivityForm />
+            </Route>
+            <Route exact path="/activities/:id">
+              <ActivityPage />
+            </Route>
+            <Route path="/activities/:id/edit">
+              <EditActivityForm />
+            </Route>
+            <Route path="/users/:id/activities">
+              <UserActivitiesPage />
+            </Route>
+          </Switch>
+        )}
+      </main>
+    </>
   );
 }
 
