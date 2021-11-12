@@ -42,9 +42,10 @@ const addOneReview = (review) => ({
 });
 
 // remove one review
-const removeOneReview = (reviewId) => ({
+const removeOneReview = (reviewId, activity_id) => ({
    type: REMOVE_ONE_REVIEW,
-   reviewId
+   reviewId,
+   activity_id
 })
 
 
@@ -123,7 +124,7 @@ export const deleteReview = (reviewId) => async (dispatch) => {
    });
    const data = await res.json();
    if (data.message) {
-      dispatch(removeOneReview(reviewId));
+      dispatch(removeOneReview(reviewId, data.activity_id));
       return data.message;
    }
 }
@@ -136,6 +137,7 @@ const initialState = {};
 // Define a reducer
 const activitiesReducer = (state = initialState, action) => {
    let newState = {};
+   let activity_id;
    switch (action.type) {
 
       case LOAD_ALL:
@@ -163,7 +165,7 @@ const activitiesReducer = (state = initialState, action) => {
          return newState
 
       case ADD_ONE_REVIEW:
-         const activity_id = action.review.activity_id;
+         activity_id = action.review.activity_id;
 
          if (!state[activity_id]) {
             return { ...state, [activity_id]: { Reviews: [action.review] } };
@@ -175,7 +177,9 @@ const activitiesReducer = (state = initialState, action) => {
 
       case REMOVE_ONE_REVIEW:
          newState = { ...state };
-         console.log(newState);
+         const reviewArr = newState[action.activity_id].Reviews
+         const newReviewArr = reviewArr.filter(review => review.id !== action.reviewId );
+         newState[action.activity_id].Reviews = newReviewArr;
          return newState;
 
       default:

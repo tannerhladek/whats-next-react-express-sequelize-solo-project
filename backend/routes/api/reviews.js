@@ -22,8 +22,9 @@ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res, next) => 
    const review = await Review.findByPk(reviewId);
 
    if (review && review.user_id === userId) {
+      let activity_id = review.activity_id
       await review.destroy();
-      return res.json({ message: `Review ${review.id} has been destoyred` })
+      return res.json({ message: `Review ${review.id} has been destoyred`, activity_id })
    } else {
       const error = reviewNotFoundError();
       next(error);
