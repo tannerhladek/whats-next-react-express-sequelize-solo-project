@@ -1,6 +1,6 @@
 #splashPageContainer {
    position: relative;
-   top: 60px;
+   top: 45px;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -12,6 +12,7 @@
    width: 80%;
    overflow: auto;
    white-space: nowrap;
+   margin-top: 50px;
    padding-left: 30px;
    padding-right: 30px;
    display: flex;
@@ -58,4 +59,22 @@
    font-size: 22px;
    height: 65%;
    overflow: none;
+}
+
+.splashPageImg {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 800px;
+   background-image: url('https://res.cloudinary.com/duaoperia/image/upload/v1636842116/3665285_wk6wep.png');
+   background-position: 50% 50%;
+   /* background-size: cover; */
+}
+
+#splashPageTagline {
+   color: white;
+   font-family: 'Poppins', sans-serif;
+   font-size: 45px;
+   height: auto;
 }
