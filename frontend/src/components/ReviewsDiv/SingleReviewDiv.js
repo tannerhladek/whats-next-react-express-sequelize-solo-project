@@ -4,24 +4,14 @@ import styles from './ReviewsDiv.module.css';
 
 // thunk imports
 import { deleteReview } from '../../store/activities';
-import { editReview } from '../../store/activities';
+
+import EditReviewFormModal from '../EditReviewFormModal';
 
 const SingleReview = ({ review }) => {
    const dispatch = useDispatch();
    const reviews = useSelector(state => state.activities[review.activity_id].Reviews);
    const session = useSelector(state => state.session);
 
-
-
-   // edit a review
-   const handleEdit = () => {
-      dispatch(editReview({
-         id: 4,
-         activity_id: 1,
-         content: " Will this work for me this time - test 503 ???!"
-      }))
-      return
-   };
 
    // delete a review
    const handleDelete = () => {
@@ -33,7 +23,7 @@ const SingleReview = ({ review }) => {
    if (session.user && review.user_id === session.user.id) {
       buttons = (
          <>
-            <button onClick={handleEdit} id={styles.reviewButton}>Edit</button>
+            <EditReviewFormModal review={review}/>
             <button onClick={handleDelete} id={styles.reviewButton}>Delete</button>
          </>
       )

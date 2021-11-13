@@ -6,15 +6,16 @@ import { editReview } from '../../store/activities';
 
 import styles from './EditReviewForm.module.css'
 
-const EditReviewForm = ({ review }) => {
+const EditReviewForm = ({ review, setShowModal }) => {
    const dispatch = useDispatch();
 
    const [content, setContent] = useState(review.content);
    const [errors, setErrors] = useState([]);
 
-   const handleSubmit = async (e) => {
+   const handleSubmit = (e) => {
       e.preventDefault();
       dispatch(editReview({content: content, id: review.id}))
+      setShowModal(false);
       // const review = await
    }
 

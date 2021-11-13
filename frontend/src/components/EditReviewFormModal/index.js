@@ -10,7 +10,7 @@ function EditReviewFormModal({ review }) {
          <button onClick={() => setShowModal(true)}>Edit</button>
          {showModal && (
             <Modal onClose={() => setShowModal(false)}>
-               <EditReviewForm review={review}/>
+               <EditReviewForm review={review} setShowModal={setShowModal}/>
             </Modal>
          )}
       </>
