@@ -7,6 +7,7 @@ const ADD_ONE = 'activities/ADD_ONE';
 const REMOVE_ONE = 'activities/REMOVE_ONE';
 const ADD_ONE_REVIEW = 'activities/ADD_ONE_REVIEW';
 const REMOVE_ONE_REVIEW = 'activities/REMOVE_ONE_REVIEW';
+const EDIT_ONE_REVIEW = 'activities/EDIT_ONE_REVIEW'
 
 
 // ACTION CREATORS
@@ -46,6 +47,12 @@ const removeOneReview = (reviewId, activity_id) => ({
    type: REMOVE_ONE_REVIEW,
    reviewId,
    activity_id
+});
+
+// edit one review
+const editOneReview = (review) => ({
+   type: EDIT_ONE_REVIEW,
+   review
 })
 
 
@@ -126,6 +133,20 @@ export const deleteReview = (reviewId) => async (dispatch) => {
       dispatch(removeOneReview(reviewId, data.activity_id));
       return data.message;
    }
+};
+
+// edit a review
+export const editReview = (payload) => async (dispatch) => {
+   const reviewId = payload.id;
+   const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+      method: "PUT",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+   });
+
+   const data = await res.json();
+   dispatch(editOneReview(data.review));
+   return data.review;
 }
 
 
@@ -137,6 +158,7 @@ const initialState = {};
 const activitiesReducer = (state = initialState, action) => {
    let newState = {};
    let activity_id;
+   let reviewArr;
    switch (action.type) {
 
       case LOAD_ALL:
@@ -176,9 +198,19 @@ const activitiesReducer = (state = initialState, action) => {
 
       case REMOVE_ONE_REVIEW:
          newState = { ...state };
-         const reviewArr = newState[action.activity_id].Reviews
-         const newReviewArr = reviewArr.filter(review => review.id !== action.reviewId );
+         reviewArr = newState[action.activity_id].Reviews
+         const newReviewArr = reviewArr.filter(review => review.id !== action.reviewId);
          newState[action.activity_id].Reviews = newReviewArr;
+         return newState;
+
+      case EDIT_ONE_REVIEW:
+         activity_id = action.review.activity_id;
+         console.log(activity_id, '--------------')
+         newState = { ...state };
+         reviewArr = newState[activity_id].Reviews;
+         const index = reviewArr.findIndex(review => review.id === action.review.id);
+         reviewArr[index] = { ...action.review };
+         newState[activity_id].Reviews = [...reviewArr];
          return newState;
 
       default:
@@ -210,3 +242,9 @@ export default activitiesReducer;
 // }));
 
 // window.store.dispatch(window.activityActions.deleteReview(27));
+
+// window.store.dispatch(window.activityActions.editReview({
+//    id: 4,
+//    activity_id: 1,
+//    content: "testing the edit thunk - EDITED!!!!"
+// }));

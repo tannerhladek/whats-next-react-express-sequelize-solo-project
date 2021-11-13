@@ -5,17 +5,13 @@ import styles from './ReviewsDiv.module.css';
 // thunk imports
 import { deleteReview } from '../../store/activities';
 
+import EditReviewFormModal from '../EditReviewFormModal';
+
 const SingleReview = ({ review }) => {
    const dispatch = useDispatch();
-   const activities = useSelector(state => state.activities);
+   const reviews = useSelector(state => state.activities[review.activity_id].Reviews);
    const session = useSelector(state => state.session);
 
-
-   // edit a review
-   const handleEdit = () => {
-      //  TO DO = creatid edit review function/thunk
-      return
-   };
 
    // delete a review
    const handleDelete = () => {
@@ -27,7 +23,7 @@ const SingleReview = ({ review }) => {
    if (session.user && review.user_id === session.user.id) {
       buttons = (
          <>
-            <button onClick={handleEdit} id={styles.reviewButton}>Edit</button>
+            <EditReviewFormModal review={review}/>
             <button onClick={handleDelete} id={styles.reviewButton}>Delete</button>
          </>
       )

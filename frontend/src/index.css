@@ -7,7 +7,7 @@
 }
 
 body {
-   font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
+   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
    background: rgb(254, 255, 254);
    display: flex;
 }
@@ -34,6 +34,7 @@ button {
    border: 1px rgb(218, 218, 218) solid;
    font-size: 10px;
    transition-duration: .2s;
+   cursor: pointer;
 }
 
 button:hover {

@@ -22,6 +22,20 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
    return res.json({ review })
 }));
 
+// activity review edit route
+router.put('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+   const user_id = req.user.id;
+   const reviewId = req.params.id;
+   const { content, activitId } = req.body;
+
+   const review = await Review.findByPk(reviewId);
+   if (review.user_id === user_id) {
+      review.content = content;
+      await review.save();
+      return res.json({ review })
+   }
+}));
+
 
 // activity not found error function
 const reviewNotFoundError = () => {
@@ -64,6 +78,16 @@ module.exports = router;
 //    headers: { "Content-Type": "application/json" },
 //    body: JSON.stringify({
 //       content: 'test review creation in the reviews router',
+//       activity_id: 1
+//    })
+// });
+
+
+// window.csrfFetch('/api/reviews/', {
+//    method: "PUT",
+//    headers: { "Content-Type": "application/json" },
+//    body: JSON.stringify({
+//       content: 'test review editing in the reviews router - EDITED!!!!',
 //       activity_id: 1
 //    })
 // });
