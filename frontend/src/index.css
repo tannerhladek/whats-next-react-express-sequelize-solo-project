@@ -41,9 +41,4 @@ button:hover {
    background-color: rgb(240, 240, 240);
 }
 
-main {
-   display: flex;
-   /* max-width: 1280px; */
-}
-
 

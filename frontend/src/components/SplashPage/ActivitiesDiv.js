@@ -27,7 +27,7 @@ const ActivitiesDiv = () => {
          )}
 
          {isLoaded && (
-            <div id={styles.activityCardsContainer}>
+            <div className={styles.activityCardsContainer}>
                {activities.map(activity => (
                   <ActivityCard activity={activity} key={activity.id}/>
                ))}
