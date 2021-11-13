@@ -7,7 +7,7 @@ const SplashPage = () => {
    return (
       <div id={styles.splashPageContainer}>
          <div className={styles.splashPageImg}>
-            <span id={styles.splashPageTagline}>Not sure what to do? Perfect.</span>
+            <span id={styles.splashPageTagline}>Not sure what's next? Perfect.</span>
          </div>
          <ActivitiesDiv />
       </div>
