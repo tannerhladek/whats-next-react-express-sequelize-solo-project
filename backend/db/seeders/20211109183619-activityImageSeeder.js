@@ -5,23 +5,23 @@ module.exports = {
 
     return queryInterface.bulkInsert('Activity_images', [
       {
-        url: "https://static6.depositphotos.com/1165301/649/v/600/depositphotos_6492381-stock-illustration-tropical-sunset.jpg",
+        url: "https://res.cloudinary.com/duaoperia/image/upload/v1636842159/depositphotos_6492381-stock-illustration-tropical-sunset_xtfww5.jpg",
         activity_id: 1
       },
       {
-        url: "https://static.vecteezy.com/system/resources/previews/000/122/203/original/vector-riding-on-a-zipline.jpg",
+        url: "https://res.cloudinary.com/duaoperia/image/upload/v1636842184/vector-riding-on-a-zipline_tc70bb.jpg",
         activity_id: 2
       },
       {
-        url: "https://media.istockphoto.com/vectors/hollywood-vector-id519936089?k=20&m=519936089&s=612x612&w=0&h=8yOerSr8DtCHcbFOOB7CfbWuCf408kbbJFxVO3qSa4s=",
+        url: "https://res.cloudinary.com/duaoperia/image/upload/v1636842203/hollywood-vector-id519936089_kqjx4w.jpg",
         activity_id: 3
       },
       {
-        url: "https://static.vecteezy.com/system/resources/previews/002/355/581/non_2x/girl-riding-bicycle-on-beach-free-vector.jpg",
+        url: "https://res.cloudinary.com/duaoperia/image/upload/v1636842217/girl-riding-bicycle-on-beach-free-vector_ei7qck.jpg",
         activity_id: 4
       },
       {
-        url: "https://static.vecteezy.com/system/resources/thumbnails/002/773/465/small_2x/celebration-of-beer-background-free-vector.jpg",
+        url: "https://res.cloudinary.com/duaoperia/image/upload/v1636842232/celebration-of-beer-background-free-vector_cesyms.jpg",
         activity_id: 5
       },
     ], {});
