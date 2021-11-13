@@ -14,11 +14,17 @@ const ActivityCard = ({ activity }) => {
 
 
    return (
-      <div className={styles.activityCard} onClick={handleRedirect}>
-         <img src={imageUrl} alt='test' />
-         <h1>{name}</h1>
-         <h2>{city}</h2>
-         <h2>{state}</h2>
+      <div
+         className={styles.activityCard}
+         onClick={handleRedirect}
+         style={{ backgroundImage: `url(${imageUrl})` }}
+      >
+         {/* <img src={imageUrl} alt='test' /> */}
+         <div className={styles.activityCarcContent}>
+            <h1>{name}</h1>
+            <h2>{city}</h2>
+            <h2>{state}</h2>
+         </div>
       </div>
    );
 };
