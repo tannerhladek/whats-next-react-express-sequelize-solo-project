@@ -52,7 +52,7 @@ const ActivityPage = () => {
          {isLoaded && (
             <div className={styles.activityPageContainer}>
                <div className={styles.activityContainer}>
-                  <div id={styles.activityName}>{name}</div>
+                  <h1 id={styles.activityName}>{name}</h1>
                   <div className={styles.activityImageContainer} >
                      <img src={Activity_images[0].url} alt={name} />
                   </div>

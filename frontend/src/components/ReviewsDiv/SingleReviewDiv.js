@@ -32,10 +32,10 @@ const SingleReview = ({ review }) => {
    }
 
    return (
-      <div id={styles.singleReviewContainer}>
-         <div className={styles.singleReviewContentContainer}>
-            {review.content}
-         </div>
+      <div className={styles.singleReviewCard}>
+         <p className={styles.singleReviewContentContainer}>
+            {`${review.content}`}
+         </p>
          <div className={styles.singleReviewButtonsContainer}>
             {buttons}
          </div>

@@ -9,12 +9,14 @@ const ReviewsDiv = ({ activityId }) => {
    const reviews = useSelector(state => state.activities[activityId].Reviews);
 
    return (
-      <div className={styles.reviewsContainer}>
+      <div className={styles.reviewContainer}>
          <h1>Reviews</h1>
-         {reviews.map((review) => (
-            <SingleReview key={review.id} review={review}/>
-         ))}
-         <ReviewForm activityId={activityId}/>
+         <div className={styles.reviewsContainer}>
+            {reviews.map((review) => (
+               <SingleReview key={review.id} review={review} />
+            ))}
+         </div>
+         <ReviewForm activityId={activityId} />
       </div>
    )
 
