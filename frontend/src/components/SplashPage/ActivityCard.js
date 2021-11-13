@@ -19,11 +19,12 @@ const ActivityCard = ({ activity }) => {
          onClick={handleRedirect}
          style={{ backgroundImage: `url(${imageUrl})` }}
       >
-         {/* <img src={imageUrl} alt='test' /> */}
-         <div className={styles.activityCarcContent}>
-            <h1>{name}</h1>
-            <h2>{city}</h2>
-            <h2>{state}</h2>
+         <div className={styles.activityCardContent}>
+            <div id={styles.activityCardName}>{name}</div>
+            <div id={styles.activityCardLocation}>
+               <div>{city},</div>
+               <div>{state}</div>
+            </div>
          </div>
       </div>
    );
