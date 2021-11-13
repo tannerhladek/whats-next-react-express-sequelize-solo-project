@@ -1,19 +1,28 @@
 .navBarContainer {
    width: 100%;
+   position: fixed;
+   top: 0;
+   background-color:white;
+   box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%), 0 1px 4px rgb(0 0 0 / 10%);
    height: 45px;
    display: flex;
    align-items: center;
-   justify-content: space-between;
-   background-color: white;
-   box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%), 0 1px 4px rgb(0 0 0 / 10%);
-   position: fixed;
+   justify-content: center;
    z-index: 1;
-   top: 0;
+}
+
+.navBarContent {
+   width: 85%;
+   max-width: 1280px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   position: fixed;
    padding-left: 40px;
    padding-right: 40px;
 }
 
-.navBarContainer ul {
+.navBarContent ul {
    list-style: none;
 }
 
@@ -49,11 +58,10 @@
 
 .navBarRight li > button {
    padding: 5px;
-   height: 20px;
    background-color: rgb(199, 45, 99);
    color: whitesmoke;
    transition-duration: .1s;
-   font-size: 8px;
+   font-size: 10px;
 }
 
 .navBarRight li > button:hover {

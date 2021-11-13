@@ -42,17 +42,19 @@ const NavigationBar = ({ isLoaded }) => {
 
    return (
       <div className={styles.navBarContainer}>
-         <ul className={styles.navBarLeft}>
-            <li>
-               <NavLink to='/'>Home</NavLink>
-            </li>
-         </ul>
-         <div className={styles.navBarMiddle}>
-            <SearchBar />
+         <div className={styles.navBarContent}>
+            <ul className={styles.navBarLeft}>
+               <li>
+                  <NavLink to='/'>Home</NavLink>
+               </li>
+            </ul>
+            <div className={styles.navBarMiddle}>
+               <SearchBar />
+            </div>
+            <ul className={styles.navBarRight}>
+               {isLoaded && sessionLinks}
+            </ul>
          </div>
-         <ul className={styles.navBarRight}>
-            {isLoaded && sessionLinks}
-         </ul>
       </div>
    );
 };

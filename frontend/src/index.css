@@ -9,7 +9,6 @@
 body {
    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
    background: rgb(254, 255, 254);
-   display: flex;
 }
 
 a {
@@ -44,4 +43,7 @@ button:hover {
 
 main {
    display: flex;
+   /* max-width: 1280px; */
 }
+
+

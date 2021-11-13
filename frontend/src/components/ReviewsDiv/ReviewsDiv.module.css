@@ -64,6 +64,12 @@
    align-items: center;
 }
 
+.singleReviewButtonsContainer > button:hover {
+   color: rgb(199, 45, 99);
+   background-color: rgb(236, 236, 236);
+}
+
+/* trying to make buttons only appear while hovering */
 /* .singleReviewButtonsContainer #reviewButton {
    visibility: hidden;
 }
@@ -72,7 +78,15 @@
    visibility: visible;
 } */
 
-.singleReviewButtonsContainer > button:hover {
-   color: rgb(199, 45, 99);
-   background-color: rgb(236, 236, 236);
+.reviewForm > button {
+   padding: 5px;
+   background-color: rgb(199, 45, 99);
+   color: whitesmoke;
+   transition-duration: .1s;
+   font-size: 10px;
+}
+
+.reviewForm > button :hover {
+   box-shadow:0 2px 2px 1px rgba(0,0,0,0.1);
+   background-color: rgb(165, 38, 83);
 }
