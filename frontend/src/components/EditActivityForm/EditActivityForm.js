@@ -51,6 +51,7 @@ const EditActivityForm = () => {
          {isLoaded && (
             <div className={styles.editActivityFormContainer}>
                <form onSubmit={handleSubmit}>
+                  <div id={styles.editActivityFormTitle}>Edit your Activity: </div>
                   <ul>
                      {errors.map((error, i) => (
                         <li key={i}>{error}</li>
@@ -91,7 +92,7 @@ const EditActivityForm = () => {
                      value={url}
                      onChange={e => setImageUrl(e.target.value)}
                   />
-                  <button type='submit' id={styles.editActivityFormButton}>Submit Edits to Activity</button>
+                  <button type='submit' id={styles.editActivityFormButton}>Submit Edits</button>
                </form>
             </div>
          )}
