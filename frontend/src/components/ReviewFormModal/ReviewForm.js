@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 // thunk import
 import { createReview } from '../../store/activities';
 
-import styles from './ReviewsForm.module.css';
+import styles from './ReviewForm.module.css';
 
 const ReviewForm = ({ activityId, setShowModal }) => {
    const dispatch = useDispatch();
