@@ -4,7 +4,9 @@ import { NavLink, useHistory } from 'react-router-dom';
 
 import { logout } from '../../store/session';
 
-const ProfileButton = ({user}) => {
+import styles from './NavBar.module.css';
+
+const ProfileButton = ({ user }) => {
    const history = useHistory();
    const dispatch = useDispatch();
    const [showMenu, setShowMenu] = useState(false);
@@ -36,7 +38,8 @@ const ProfileButton = ({user}) => {
 
    return (
       <div>
-         <button onClick={openMenu}>
+         <button id={styles.profileButton} onClick={openMenu}>
+            <i class="fa fa-bars" />
             <i className="far fa-user" />
          </button>
          {showMenu && (
