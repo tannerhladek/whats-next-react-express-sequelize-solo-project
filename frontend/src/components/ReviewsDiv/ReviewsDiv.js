@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import styles from './ReviewsDiv.module.css';
 import SingleReview from "./SingleReviewDiv";
-import ReviewForm from "./ReviewForm";
+import ReviewFormModal from "../ReviewFormModal";
 
 const ReviewsDiv = ({ activityId }) => {
    const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const ReviewsDiv = ({ activityId }) => {
       <div className={styles.reviewContainer}>
          <h1>Reviews</h1>
          {reviewsContent}
-         <ReviewForm activityId={activityId} />
+         <ReviewFormModal activityId={activityId} />
       </div>
    )
 
