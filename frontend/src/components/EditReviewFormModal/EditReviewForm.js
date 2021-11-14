@@ -30,7 +30,7 @@ const EditReviewForm = ({ review, setShowModal }) => {
                   <li key={i}>{error}</li>
                ))}
             </ul>
-            <input
+            <textarea
                type='text'
                placeholder='Username or Email'
                value={content}

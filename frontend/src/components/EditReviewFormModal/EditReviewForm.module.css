@@ -1,0 +1,43 @@
+.editReviewFormContainer {
+   width: 500px;
+   height: 400px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.editReviewFormContainer form {
+   width: 80%;
+   height: 80%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+}
+
+.editReviewFormContainer form > textarea {
+   width: 100%;
+   height: 90%;
+   resize: none;
+   padding: 7px;
+   border: 2px solid #eee;
+   border-radius: 10px;
+   transition-duration: .25s;
+}
+
+.editReviewFormContainer form > button {
+   margin-top: 15px;
+   width: 100%;
+   height: 30px;
+   border-radius: 5px;
+   font-family: poppins, sans-serif;
+   font-size: 14px;
+   color: rgba(255, 255, 255, .9);
+   background-color: rgb(88, 184, 88);
+   transition-duration: .25s;
+}
+
+.editReviewFormContainer form > button:hover {
+   background-color: rgb(91, 163, 91);
+   color: white;
+   box-shadow:0 3px 3px 1px rgba(0,0,0,0.1);
+}
