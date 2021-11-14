@@ -6,7 +6,7 @@ import { getUserActivities } from '../../store/session';
 
 // import components and styles
 import ActivityCard from '../SplashPage/ActivityCard'
-import styles from '../SplashPage/SplashPage.module.css';
+import styles from './UserActivitiesPage.module.css';
 
 
 const UserActivitiesPage = () => {
@@ -29,10 +29,15 @@ const UserActivitiesPage = () => {
          )}
 
          {isLoaded && (
-            <div id={styles.activityCardsContainer}>
-               {userActivities.map(activity => (
-                  <ActivityCard activity={activity} key={activity.id} />
-               ))}
+            <div className={styles.userPageContainer}>
+               <div className={styles.userActivitiesContainer}>
+                  <div id={styles.myActivitiesTitle}>My Activities: </div>
+                  <div id={styles.userActivityCardsContainer}>
+                     {userActivities.map(activity => (
+                        <ActivityCard activity={activity} key={activity.id} />
+                     ))}
+                  </div>
+               </div>
             </div>
          )}
       </>
