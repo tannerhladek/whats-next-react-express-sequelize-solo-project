@@ -18,11 +18,9 @@ const NavigationBar = ({ isLoaded }) => {
    let sessionLinks;
    if (session.user) {
       sessionLinks = (
-         <>
-            <li>
-               <ProfileButton user={session.user} />
-            </li>
-         </>
+         <li>
+            <ProfileButton user={session.user} />
+         </li>
       )
    } else {
       sessionLinks = (

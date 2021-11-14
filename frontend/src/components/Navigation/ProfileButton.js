@@ -37,25 +37,27 @@ const ProfileButton = ({ user }) => {
 
 
    return (
-      <div>
+      <div className={styles.profileButtonContainer}>
          <button id={styles.profileButton} onClick={openMenu}>
             <i class="fa fa-bars" />
             <i className="far fa-user" />
          </button>
          {showMenu && (
-            <ul className='profile-dropdown'>
-               <li>{user.username}</li>
-               <li>{user.email}</li>
-               <li>
-                  <NavLink to='/activities/new'>Create Activity</NavLink>
-               </li>
-               <li>
-                  <NavLink to={`/users/${user.id}/activities`}>My Activities</NavLink>
-               </li>
-               <li>
-                  <button onClick={signOut}>Log Out</button>
-               </li>
-            </ul>
+            <div className={styles.profileDropdown}>
+               <ul >
+                  <li>{user.username}</li>
+                  <li>{user.email}</li>
+                  <li>
+                     <NavLink to='/activities/new'>Create Activity</NavLink>
+                  </li>
+                  <li>
+                     <NavLink to={`/users/${user.id}/activities`}>My Activities</NavLink>
+                  </li>
+                  <li>
+                     <button onClick={signOut}>Log Out</button>
+                  </li>
+               </ul>
+            </div>
          )}
       </div>
    );
