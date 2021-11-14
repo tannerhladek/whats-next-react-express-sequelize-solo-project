@@ -90,3 +90,12 @@
    box-shadow:0 2px 2px 1px rgba(0,0,0,0.1);
    background-color: rgb(165, 38, 83);
 }
+
+#reviewsContentPlaceholder {
+   font-family: popping, sans-serif;
+   font-size: 18px;
+   height: 350px;
+   display: flex;
+   align-items: center;
+   color: rgb(121, 121, 121);
+}
