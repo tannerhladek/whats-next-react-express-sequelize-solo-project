@@ -27,10 +27,13 @@ const ActivitiesDiv = () => {
          )}
 
          {isLoaded && (
-            <div id={styles.activityCardsContainer}>
-               {activities.map(activity => (
-                  <ActivityCard activity={activity} key={activity.id}/>
-               ))}
+            <div className={styles.fanFavoriteActivitiesContainer}>
+               <div id={styles.fanFavoritesTitle}>Some Fan Favorites:</div>
+               <div className={styles.activityCardsContainer}>
+                  {activities.map(activity => (
+                     <ActivityCard activity={activity} key={activity.id} />
+                  ))}
+               </div>
             </div>
          )}
       </>

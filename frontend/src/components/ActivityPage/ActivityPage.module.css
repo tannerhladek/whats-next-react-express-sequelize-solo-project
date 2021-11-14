@@ -11,10 +11,10 @@
    width: 80%;
    display: flex;
    flex-direction: column;
-   background-color: white;
    padding: 10px;
    border-bottom: 1px solid rgb(220, 220, 220);
    align-self: center;
+   font-family: 'Poppins', sans-serif;
 }
 
 .activityImageContainer > img {
@@ -26,20 +26,18 @@
 }
 
 #activityName {
-   font-size: 50px;
+   font-size: 28px;
    margin-top: 10px;
    margin-bottom: 20px;
    padding-left: 3px;
-   font-size: medium;
    font-weight: 400;
-   font-family: poppins;
+   font-family: poppins, sans-serif;
 }
 
 #activityDescription {
-   font-size: 10px;
+   font-size: 14px;
    margin-top: 20px;
    padding-left: 1px;
-   font-family: poppins;
    font-weight: 300;
 }
 
@@ -47,7 +45,6 @@
    margin-top: 10px;
    width: fit-content;
    margin-top: 35px;
-   font-family: 'Poppins';
    font-weight: bold;
 }
 
@@ -60,14 +57,15 @@
 
 .activityButtonContainer > button {
    margin-right: 10px;
-   padding: 5px;
-   height: 20px;
-   background-color: white;
+   padding: 6px;
+   height: 22px;
    color: rgb(199, 45, 99);
    transition-duration: .1s;
-   font-size: 8px;
-   width: 50px;
+   width: 60px;
    border: 1px rgb(199, 45, 99) solid;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .activityButtonContainer > button:hover {

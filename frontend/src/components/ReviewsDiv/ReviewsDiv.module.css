@@ -1,23 +1,75 @@
-.reviewsContainer {
+.reviewContainer {
    margin-top: 25px;
+   width: 80%;
+   max-width: 1000px;
+   display: flex;
+   flex-direction: column;
+   padding: 10px;
+   border-bottom: 1px solid rgb(220, 220, 220);
+   align-self: center;
+   font-family: 'Poppins', sans-serif;
 }
 
-#singleReviewContainer {
-   padding-top: 10px;
+.reviewsContainer {
+   height: 350px;
+   width: auto;
+   overflow: auto;
+   white-space: nowrap;
 }
 
+.reviewContainer > h1 {
+   font-size: 28px;
+   font-weight: 400;
+   margin-bottom: 10px;
+}
 
+.singleReviewCard {
+   display: inline-block;
+   /* justify-content: space-evenly; */
+   height: 300px;
+   width: 300px;
+   margin: 10px;
+   padding: 10px;
+   border-radius: 10px;
+   border: 1px solid rgb(220, 220, 220);
+   box-shadow:0 2px 2px 1px rgba(0,0,0,0.1);
+   transition-duration: .25s;
+}
+
+.singleReviewContentContainer {
+   height: 80%;
+   white-space: normal;
+   font-weight: 300;
+   overflow: scroll;
+   hyphens: manual;
+}
+
+.singleReviewButtonsContainer {
+   height: 20%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
 
 .singleReviewButtonsContainer > button {
-   padding: 5px;
-   height: 20px;
-   background-color: rgb(199, 45, 99);
-   color: whitesmoke;
+   margin: 10px;
+   padding: 6px;
+   height: 22px;
+   color: rgb(199, 45, 99);
    transition-duration: .1s;
-   font-size: 8px;
-   cursor: pointer;
+   width: 60px;
+   border: 1px rgb(199, 45, 99) solid;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
+.singleReviewButtonsContainer > button:hover {
+   color: rgb(199, 45, 99);
+   background-color: rgb(236, 236, 236);
+}
+
+/* trying to make buttons only appear while hovering */
 /* .singleReviewButtonsContainer #reviewButton {
    visibility: hidden;
 }
@@ -26,7 +78,15 @@
    visibility: visible;
 } */
 
-.singleReviewButtonsContainer > button:hover {
+.reviewForm > button {
+   padding: 5px;
+   background-color: rgb(199, 45, 99);
+   color: whitesmoke;
+   transition-duration: .1s;
+   font-size: 10px;
+}
+
+.reviewForm > button :hover {
    box-shadow:0 2px 2px 1px rgba(0,0,0,0.1);
    background-color: rgb(165, 38, 83);
 }
