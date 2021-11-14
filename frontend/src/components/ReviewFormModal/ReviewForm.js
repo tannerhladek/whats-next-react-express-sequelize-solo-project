@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux'
 // thunk import
 import { createReview } from '../../store/activities';
 
-import styles from './ReviewsDiv.module.css';
+import styles from './ReviewForm.module.css';
 
-const ReviewForm = ({ activityId }) => {
+const ReviewForm = ({ activityId, setShowModal }) => {
    const dispatch = useDispatch();
 
    const [content, setContent] = useState('');
@@ -15,6 +15,7 @@ const ReviewForm = ({ activityId }) => {
       e.preventDefault();
       const review = await dispatch(createReview({activityId, content: content}));
       setContent('')
+      setShowModal(false)
       return;
    }
 
