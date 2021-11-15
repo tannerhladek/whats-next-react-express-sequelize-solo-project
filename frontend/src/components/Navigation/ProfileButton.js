@@ -29,7 +29,6 @@ const ProfileButton = ({ user }) => {
 
 
    const signOut = (e) => {
-      e.preventDefault();
       dispatch(logout())
          .then(() => history.push('/'));
    };

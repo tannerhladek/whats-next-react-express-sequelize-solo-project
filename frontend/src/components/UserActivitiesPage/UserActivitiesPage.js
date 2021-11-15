@@ -13,7 +13,11 @@ const UserActivitiesPage = () => {
    const dispatch = useDispatch();
    const session = useSelector(state => state.session);
    const userActivitiesObj = session.userActivities;
-   const userActivities = Object.values(userActivitiesObj);
+
+   let userActivities = [];
+   if (userActivitiesObj) {
+      userActivities = Object.values(userActivitiesObj);
+   }
 
    const [isLoaded, setIsLoaded] = useState(false);
 
