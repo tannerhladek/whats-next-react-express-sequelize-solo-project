@@ -10,12 +10,11 @@ import styles from './CreateActivityForm.module.css';
 const CreateActivityForm = () => {
    const history = useHistory();
    const dispatch = useDispatch();
-   const activities = useSelector(state => state.activities);
 
    const [name, setName] = useState('');
    const [description, setDescription] = useState('');
    const [address, setAddress] = useState('');
-   const [city, setCity] = useState('');
+   const [city, setCity] = useState('Los Angeles');
    const [state, setState] = useState ('CA');
    const [country, setCountry] = useState('United States');
    const [url, setImageUrl] = useState('');
@@ -29,8 +28,8 @@ const CreateActivityForm = () => {
          description,
          address,
          city,
-         state,
-         country,
+         state: 'CA',
+         country: 'United States',
          url
       };
 
@@ -38,7 +37,6 @@ const CreateActivityForm = () => {
          .then((activity) => history.push(`/activities/${activity.id}`))
 
    }
-
 
    return (
       <div className={styles.createActivityFormContainer}>
@@ -53,26 +51,30 @@ const CreateActivityForm = () => {
                type='text'
                value={name}
                onChange={e => setName(e.target.value)}
+               required={true}
             />
             <input
                placeholder='Activity Description'
                type='text'
                value={description}
                onChange={e => setDescription(e.target.value)}
+               required={true}
             />
             <input
                placeholder='Address'
                type='text'
                value={address}
                onChange={e => setAddress(e.target.value)}
+               required={true}
             />
             <input
                placeholder='City'
                type='text'
                value={city}
                onChange={e => setCity(e.target.value)}
+               required={true}
             />
-            <input
+            {/* <input
                placeholder='State'
                type='text'
                value={state}
@@ -83,12 +85,13 @@ const CreateActivityForm = () => {
                type='text'
                value={country}
                onChange={e => setCountry(e.target.value)}
-            />
+            /> */}
             <input
                placeholder='Cover Image URL'
                type='text'
                value={url}
                onChange={e => setImageUrl(e.target.value)}
+               required={true}
             />
             <button type='submit' id={styles.createActivityFormButton}>Submit Activity</button>
          </form>
