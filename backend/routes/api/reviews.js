@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const {check} = require('express-validator');
-const { Review } = require('../../db/models');
+const { Review, User } = require('../../db/models');
 
 const { requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -23,11 +23,17 @@ router.post('/', requireAuth, validateReviewCreation, asyncHandler(async (req, r
    const user_id = req.user.id;
    const { content, activityId } = req.body;
 
-   const review = await Review.create({
+   const new_review = await Review.create({
       user_id,
       activity_id: activityId,
       content
    });
+   const review = await Review.findByPk(new_review.id, {
+      include: User
+   })
+   console.log('=============')
+   console.log(review.toJSON())
+   console.log('=============')
    return res.json({ review })
 }));
 
