@@ -35,12 +35,14 @@ router.post('/', requireAuth, validateReviewCreation, asyncHandler(async (req, r
 }));
 
 // activity review edit route
-router.put('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+router.put('/:id(\\d+)', requireAuth, validateReviewCreation, asyncHandler(async (req, res) => {
    const user_id = req.user.id;
    const reviewId = req.params.id;
    const { content, activitId } = req.body;
 
-   const review = await Review.findByPk(reviewId);
+   const review = await Review.findByPk(reviewId, {
+      include: User
+   });
    if (review.user_id === user_id) {
       review.content = content;
       await review.save();
