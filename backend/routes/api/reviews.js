@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-
+const {check} = require('express-validator');
 const { Review } = require('../../db/models');
 
 const { requireAuth } = require('../../utils/auth');
@@ -8,9 +8,18 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
+// review creation validator
+const validateReviewCreation = [
+   check('content')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 10 })
+      .withMessage('Please provide a valid review (min length 10 char).'),
+   handleValidationErrors,
+];
+
 
 // activity review creation
-router.post('/', requireAuth, asyncHandler(async (req, res) => {
+router.post('/', requireAuth, validateReviewCreation, asyncHandler(async (req, res) => {
    const user_id = req.user.id;
    const { content, activityId } = req.body;
 
