@@ -15,8 +15,8 @@ const CreateActivityForm = () => {
    const [description, setDescription] = useState('');
    const [address, setAddress] = useState('');
    const [city, setCity] = useState('Los Angeles');
-   const [state, setState] = useState ('CA');
-   const [country, setCountry] = useState('United States');
+   // const [state, setState] = useState ('CA');
+   // const [country, setCountry] = useState('United States');
    const [url, setImageUrl] = useState('');
    const [errors, setErrors] = useState([]);
 
@@ -33,8 +33,12 @@ const CreateActivityForm = () => {
          url
       };
 
-      dispatch(createActivity(payload))
-         .then((activity) => history.push(`/activities/${activity.id}`))
+      return dispatch(createActivity(payload))
+               .then((activity) => history.push(`/activities/${activity.id}`))
+               .catch(async (res) => {
+                  const data = await res.json();
+                  if (data && data.errors) setErrors(data.errors);
+               })
 
    }
 

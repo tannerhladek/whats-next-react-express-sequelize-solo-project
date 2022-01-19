@@ -49,7 +49,7 @@ const validateActivityCreation = [
       .withMessage('Activity must be in CA (California).'),
    check('country')
       .exists({ checkFalsy: true })
-      .matches('Unites States')
+      .matches('United States')
       .withMessage('Activity must be in the United States.'),
    check('url')
       .exists({ checkFalsy: true })
