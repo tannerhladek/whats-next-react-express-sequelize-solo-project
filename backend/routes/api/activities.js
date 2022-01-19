@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Activity, Activity_image, Review } = require('../../db/models');
+const { Activity, Activity_image, Review, User } = require('../../db/models');
 const { check } = require('express-validator');
 const { Op } = require('sequelize');
 
@@ -21,9 +21,11 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
    const activityId = req.params.id;
    const activity = await Activity.findByPk(activityId, {
-      include: [Activity_image, Review]
+      include: [Activity_image, {
+         model: Review,
+         include: User
+      }]
    });
-   console.log(activity)
    return res.json({ activity });
 }));
 

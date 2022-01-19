@@ -31,9 +31,6 @@ router.post('/', requireAuth, validateReviewCreation, asyncHandler(async (req, r
    const review = await Review.findByPk(new_review.id, {
       include: User
    })
-   console.log('=============')
-   console.log(review.toJSON())
-   console.log('=============')
    return res.json({ review })
 }));
 
