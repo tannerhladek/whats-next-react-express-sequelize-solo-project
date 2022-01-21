@@ -147,7 +147,7 @@ router.get('/search/:searchString', asyncHandler(async (req, res) => {
    const activities = await Activity.findAll({
       where: {
          name: {
-            [Op.like]: `%${searchString}%`
+            [Op.iLike]: `%${searchString}%`
          }
       },
       include: Activity_image

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { csrfFetch } from '../../store/csrf';
 
@@ -6,7 +6,6 @@ import styles from './SearchBar.module.css'
 
 const SearchBar = () => {
    const history = useHistory();
-   const [searchString, setSearchString] = useState('');
    const [results, setResults] = useState([]);
 
    const debounce = (func, wait) => {
@@ -21,25 +20,18 @@ const SearchBar = () => {
       };
    };
 
-   const search = async (searchString) => {
-      const response = await csrfFetch(`/api/activities/search/${searchString}`)
-
+   const search = async (e) => {
+      const { value } = e.target
+      if (value.length < 2) return;
+      const response = await csrfFetch(`/api/activities/search/${value}`)
       if (response.ok) {
          const results = await response.json();
-         console.log('===============')
-         console.log(results);
-         console.log('===============')
+         console.log(results)
+         return results
       }
    };
 
-   const updateSearch = (e) => {
-      setSearchString(e.target.value);
-      debounce(search, 1000, searchString)
-      return
-   };
-
-
-
+   const debouncedSearch = useCallback(debounce(search, 1000));
 
    return (
       <>
@@ -47,8 +39,7 @@ const SearchBar = () => {
             placeholder='Search...'
             className={styles.searchInput}
             type='text'
-            value={searchString}
-            onChange={updateSearch}
+            onChange={debouncedSearch}
          />
       </>
    );
