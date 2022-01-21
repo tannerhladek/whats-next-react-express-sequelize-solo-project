@@ -118,8 +118,6 @@ router.put('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
 }))
 
 
-
-
 // activity not found error function
 const activityNotFoundError = () => {
    return new Error('Activity not found...')
@@ -142,6 +140,21 @@ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res, next) => 
 }));
 
 
+// activity search route
+router.get('/search/:searchString', asyncHandler(async (req, res) => {
+   const { searchString } = req.params
+   console.log('HERE!!!!!!')
+   const activities = await Activity.findAll({
+      where: {
+         name: {
+            [Op.like]: `%${searchString}%`
+         }
+      },
+      include: Activity_image
+   });
+
+   return res.json(activities)
+}));
 
 
 
@@ -190,3 +203,5 @@ module.exports = router;
 //       content: 'test review'
 //    })
 // });
+
+// window.csrfFetch('/api/activities/search/in');
