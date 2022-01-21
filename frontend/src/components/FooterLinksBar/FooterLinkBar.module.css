@@ -1,0 +1,13 @@
+.aboutLinksContainer {
+   display: flex;
+   align-items: center;
+   justify-content: space-evenly;
+   background-color: lightblue;
+}
+
+.aboutLinksContainer ul {
+   display: flex;
+   align-items: center;
+   justify-content: space-evenly;
+   list-style: none;
+}

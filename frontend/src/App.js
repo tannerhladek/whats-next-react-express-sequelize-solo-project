@@ -12,6 +12,7 @@ import ActivityPage from './components/ActivityPage';
 import CreateActivityForm from './components/CreateActivityForm';
 import UserActivitiesPage from './components/UserActivitiesPage';
 import EditActivityForm from './components/EditActivityForm';
+import FooterBarLinks from './components/FooterLinksBar/FooterLinkBarComp';
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,11 @@ function App() {
           </Switch>
         )}
       </main>
+      <footer>
+        <div>
+          <FooterBarLinks />
+        </div>
+      </footer>
     </>
   );
 }
