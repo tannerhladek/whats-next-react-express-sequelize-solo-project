@@ -2,6 +2,14 @@ import { useState, useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { csrfFetch } from '../../store/csrf';
 
+// component import
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+
 import styles from './SearchBar.module.css'
 
 const SearchBar = () => {
@@ -59,11 +67,23 @@ const SearchBar = () => {
          />
          {showResults && (
             <div className={styles.resultsContainer}>
-               {results.map((result, i) => (
-                  <div key={i}>
-                     {result.name}
-                  </div>
-               ))}
+               <List>
+                  {results.map((result, i) => (
+                     <>
+                        <ListItem alignItems="flex-start" key={i}>
+                           <ListItemAvatar>
+                              <Avatar alt={`${result.name}`} src={result.Activity_images[0].url} />
+                           </ListItemAvatar>
+                           <ListItemText
+                              primary={`${result.name}`}
+                           />
+                        </ListItem>
+                        {i !== results.length - 1 && (
+                           <Divider />
+                        )}
+                     </>
+                  ))}
+               </List>
             </div>
          )}
       </>
