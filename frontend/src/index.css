@@ -41,4 +41,6 @@ button:hover {
    background-color: rgb(240, 240, 240);
 }
 
-
+main {
+   height: auto;
+}

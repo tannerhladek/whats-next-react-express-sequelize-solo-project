@@ -7,6 +7,7 @@ import styles from './SearchBar.module.css'
 const SearchBar = () => {
    const history = useHistory();
    const [results, setResults] = useState([]);
+   const [showResults, setShowResults] = useState(false);
 
    const debounce = (func, wait) => {
       let timeout;
@@ -22,12 +23,16 @@ const SearchBar = () => {
 
    const search = async (e) => {
       const { value } = e.target
-      if (value.length < 2) return;
+      if (value.length < 2) {
+         setShowResults(false);
+         return;
+      }
       const response = await csrfFetch(`/api/activities/search/${value}`)
       if (response.ok) {
          const results = await response.json();
-         console.log(results)
-         return results
+         setResults(results);
+         setShowResults(true);
+         return
       }
    };
 
@@ -41,6 +46,15 @@ const SearchBar = () => {
             type='text'
             onChange={debouncedSearch}
          />
+         {showResults && (
+            <div className={styles.resultsContainer}>
+               {results.map((result, i) => (
+                  <div key={i}>
+                     {result.name}
+                  </div>
+               ))}
+            </div>
+         )}
       </>
    );
 };

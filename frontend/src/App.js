@@ -24,7 +24,7 @@ function App() {
   }, [dispatch])
 
   return (
-    <>
+    <div>
       <header>
         <NavigationBar isLoaded={isLoaded} />
       </header>
@@ -48,13 +48,13 @@ function App() {
             </Route>
           </Switch>
         )}
-      </main>
-      <footer>
         <div>
           <FooterBarLinks />
         </div>
+      </main>
+      <footer>
       </footer>
-    </>
+    </div>
   );
 }
 
