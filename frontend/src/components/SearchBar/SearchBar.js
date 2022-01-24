@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { csrfFetch } from '../../store/csrf';
 
@@ -8,6 +8,15 @@ const SearchBar = () => {
    const history = useHistory();
    const [results, setResults] = useState([]);
    const [showResults, setShowResults] = useState(false);
+
+   useEffect(() => {
+      if (!showResults) return;
+      const closeMenu = () => {
+         setShowResults(false);
+      };
+      document.addEventListener('click', closeMenu);
+      return () => document.removeEventListener("click", closeMenu);
+   }, [showResults]);
 
    const debounce = (func, wait) => {
       let timeout;
