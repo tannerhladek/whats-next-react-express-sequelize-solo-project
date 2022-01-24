@@ -12,6 +12,7 @@ const SearchBar = () => {
    useEffect(() => {
       if (!showResults) return;
       const closeMenu = () => {
+         document.querySelector(`#searchInput`).value = ''
          setShowResults(false);
       };
       document.addEventListener('click', closeMenu);
@@ -52,6 +53,7 @@ const SearchBar = () => {
          <input
             placeholder='Search...'
             className={styles.searchInput}
+            id='searchInput'
             type='text'
             onChange={debouncedSearch}
          />
