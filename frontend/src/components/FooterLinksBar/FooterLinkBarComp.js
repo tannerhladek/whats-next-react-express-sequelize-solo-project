@@ -13,17 +13,15 @@ const FooterBarLinks = () => {
             <li className='splash-footer-li'>
                <a href='https://github.com/tannerhladek/whats-next-react-express-sequelize-solo-project'>
                   <GitHubIcon />
-                  <span>
+                  <div>
                      What's Next Repo
-                  </span>
+                  </div>
                </a>
             </li>
             <li className='splash-footer-li'>
                <a href='https://www.linkedin.com/in/tannerhladek/'>
                   <LinkedInIcon />
-                  <span>
-                     Tanner Hladek
-                  </span>
+                  Tanner Hladek
                </a>
             </li>
          </ul>

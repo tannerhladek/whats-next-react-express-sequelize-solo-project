@@ -48,11 +48,9 @@ function App() {
             </Route>
           </Switch>
         )}
-        <div>
-          <FooterBarLinks />
-        </div>
       </main>
       <footer>
+        <FooterBarLinks />
       </footer>
     </div>
   );
