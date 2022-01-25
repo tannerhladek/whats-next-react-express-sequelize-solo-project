@@ -66,7 +66,7 @@ const SearchBar = () => {
             type='text'
             onChange={debouncedSearch}
          />
-         {showResults && (
+         {showResults && (results.length > 1) && (
             <div className={styles.resultsContainer}>
                <List>
                   {results.map((result, i) => (
@@ -84,6 +84,17 @@ const SearchBar = () => {
                         )}
                      </a>
                   ))}
+               </List>
+            </div>
+         )}
+         {showResults && (results.length < 1) && (
+            <div className={styles.resultsContainer}>
+               <List>
+                  <ListItem alignItems="flex-start" >
+                     <ListItemText
+                        primary={`We couldn't find anything...`}
+                     />
+                  </ListItem>
                </List>
             </div>
          )}
