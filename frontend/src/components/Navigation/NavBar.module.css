@@ -74,7 +74,7 @@
 .profileButtonContainer {
    position: fixed;
    right: 40px;
-   top: 0px;
+   top: 3px;
    position: absolute;
    display: flex;
    flex-direction: row-reverse;

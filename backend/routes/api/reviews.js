@@ -1,34 +1,48 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-
-const { Review } = require('../../db/models');
+const {check} = require('express-validator');
+const { Review, User } = require('../../db/models');
 
 const { requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
+// review creation validator
+const validateReviewCreation = [
+   check('content')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 10 })
+      .withMessage('Please provide a valid review (min length 10 char).'),
+   handleValidationErrors,
+];
+
 
 // activity review creation
-router.post('/', requireAuth, asyncHandler(async (req, res) => {
+router.post('/', requireAuth, validateReviewCreation, asyncHandler(async (req, res) => {
    const user_id = req.user.id;
    const { content, activityId } = req.body;
 
-   const review = await Review.create({
+   const new_review = await Review.create({
       user_id,
       activity_id: activityId,
       content
    });
+   const review = await Review.findByPk(new_review.id, {
+      include: User
+   })
    return res.json({ review })
 }));
 
 // activity review edit route
-router.put('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+router.put('/:id(\\d+)', requireAuth, validateReviewCreation, asyncHandler(async (req, res) => {
    const user_id = req.user.id;
    const reviewId = req.params.id;
    const { content, activitId } = req.body;
 
-   const review = await Review.findByPk(reviewId);
+   const review = await Review.findByPk(reviewId, {
+      include: User
+   });
    if (review.user_id === user_id) {
       review.content = content;
       await review.save();

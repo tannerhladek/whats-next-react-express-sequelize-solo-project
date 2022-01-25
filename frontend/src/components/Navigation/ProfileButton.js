@@ -39,7 +39,7 @@ const ProfileButton = ({ user }) => {
    return (
       <div className={styles.profileButtonContainer}>
          <button id={styles.profileButton} onClick={openMenu}>
-            <i class="fa fa-bars" />
+            <i className="fa fa-bars" />
             <i className="far fa-user" />
          </button>
          {showMenu && (

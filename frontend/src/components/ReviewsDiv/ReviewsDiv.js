@@ -16,7 +16,7 @@ const ReviewsDiv = ({ activityId }) => {
    } else {
       reviewsContent = (
          <div className={styles.reviewsContainer}>
-            {reviews.map((review) => (
+            {reviews?.map((review) => (
                <SingleReview key={review.id} review={review} />
             ))}
          </div>

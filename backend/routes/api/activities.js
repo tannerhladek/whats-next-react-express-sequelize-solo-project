@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Activity, Activity_image, Review } = require('../../db/models');
-
+const { Activity, Activity_image, Review, User } = require('../../db/models');
+const { check } = require('express-validator');
 const { Op } = require('sequelize');
 
 const { requireAuth } = require('../../utils/auth');
@@ -21,17 +21,47 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
    const activityId = req.params.id;
    const activity = await Activity.findByPk(activityId, {
-      include: [Activity_image, Review]
+      include: [Activity_image, {
+         model: Review,
+         include: User
+      }]
    });
-   console.log(activity)
    return res.json({ activity });
 }));
 
-// TO DO - make activity creation validators
-// name, description, address, city, state, country, url
+// name, description, address, city, url
+//activity creation validators validators
+const validateActivityCreation = [
+   check('name')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a first name.'),
+   check('description')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 5 })
+      .withMessage('Please provide a valid description.'),
+   check('address')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a valid address.'),
+   check('city')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 2 })
+      .withMessage('Please provide a valid city name.'),
+   check('state')
+      .matches('CA')
+      .withMessage('Activity must be in CA (California).'),
+   check('country')
+      .exists({ checkFalsy: true })
+      .matches('United States')
+      .withMessage('Activity must be in the United States.'),
+   check('url')
+      .exists({ checkFalsy: true })
+      .isURL()
+      .withMessage('Image URL must be a URL.'),
+   handleValidationErrors,
+];
 
 // single activity POST route - creating new activity
-router.post('/', requireAuth, asyncHandler(async (req, res) => {
+router.post('/', requireAuth, validateActivityCreation, asyncHandler(async (req, res) => {
    const { name, description, address, city, state, country, url } = req.body;
    const user_id = req.user.id
 
@@ -88,8 +118,6 @@ router.put('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
 }))
 
 
-
-
 // activity not found error function
 const activityNotFoundError = () => {
    return new Error('Activity not found...')
@@ -112,6 +140,21 @@ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res, next) => 
 }));
 
 
+// activity search route
+router.get('/search/:searchString', asyncHandler(async (req, res) => {
+   const { searchString } = req.params
+   console.log('HERE!!!!!!')
+   const activities = await Activity.findAll({
+      where: {
+         name: {
+            [Op.iLike]: `%${searchString}%`
+         }
+      },
+      include: Activity_image
+   });
+
+   return res.json(activities)
+}));
 
 
 
@@ -160,3 +203,5 @@ module.exports = router;
 //       content: 'test review'
 //    })
 // });
+
+// window.csrfFetch('/api/activities/search/in');

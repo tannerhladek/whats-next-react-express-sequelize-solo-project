@@ -32,7 +32,7 @@ const ActivityPage = () => {
 
    const handleDelete = () => {
       dispatch(deleteActivity(activity.id))
-         .then(() => history.push('/'))
+      return history.push('/');
    }
 
    let buttons;

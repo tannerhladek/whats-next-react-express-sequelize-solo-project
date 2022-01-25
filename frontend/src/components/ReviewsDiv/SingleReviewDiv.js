@@ -9,9 +9,7 @@ import EditReviewFormModal from '../EditReviewFormModal';
 
 const SingleReview = ({ review }) => {
    const dispatch = useDispatch();
-   const reviews = useSelector(state => state.activities[review.activity_id].Reviews);
    const session = useSelector(state => state.session);
-
 
    // delete a review
    const handleDelete = () => {
@@ -19,7 +17,7 @@ const SingleReview = ({ review }) => {
    };
 
 
-   let buttons
+   let buttons;
    if (session.user && review.user_id === session.user.id) {
       buttons = (
          <>
@@ -33,6 +31,9 @@ const SingleReview = ({ review }) => {
 
    return (
       <div className={styles.singleReviewCard}>
+         <div>
+            {review.User.username}
+         </div>
          <p className={styles.singleReviewContentContainer}>
             {`${review.content}`}
          </p>

@@ -14,17 +14,18 @@ const EditReviewForm = ({ review, setShowModal }) => {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      dispatch(editReview({content: content, id: review.id}))
-      setShowModal(false);
-      // const review = await
+      return dispatch(editReview({ content: content, id: review.id }))
+               .then(() => setShowModal(false))
+               .catch(async (res) => {
+                  const data = await res.json();
+                  if (data && data.errors) setErrors(data.errors);
+               })
    }
 
 
    return (
       <div className={styles.editReviewFormContainer}>
-         <form
-            onSubmit={handleSubmit}
-         >
+         <form onSubmit={handleSubmit}>
             <ul>
                {errors.map((error, i) => (
                   <li key={i}>{error}</li>

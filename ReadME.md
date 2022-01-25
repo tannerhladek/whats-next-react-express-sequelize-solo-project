@@ -2,7 +2,7 @@
 
 ## About
 
-What's Next is an AirBnb clone for activities in a given area. Are you struggling to find something to do? What's Next has got you covered!
+What's Next is an activity finder for things to do in the Los Angeles area. Are you struggling to find something to do? What's Next has got you covered!
 [Check it out for yourself](https://whats-next-react-express-solo.herokuapp.com).
 
 ### Feature List
