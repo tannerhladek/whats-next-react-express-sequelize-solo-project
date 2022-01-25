@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import { csrfFetch } from '../../store/csrf';
 
 // component import
@@ -20,7 +20,8 @@ const SearchBar = () => {
    useEffect(() => {
       if (!showResults) return;
       const closeMenu = () => {
-         document.querySelector(`#searchInput`).value = ''
+         let input = document.querySelector(`#searchInput`)
+         if (input && input.value !== '') input.value = ''
          setShowResults(false);
       };
       document.addEventListener('click', closeMenu);
@@ -69,8 +70,8 @@ const SearchBar = () => {
             <div className={styles.resultsContainer}>
                <List>
                   {results.map((result, i) => (
-                     <>
-                        <ListItem alignItems="flex-start" key={i}>
+                     <a href={`/activities/${result.id}`} key={i}>
+                        <ListItem alignItems="flex-start" >
                            <ListItemAvatar>
                               <Avatar alt={`${result.name}`} src={result.Activity_images[0].url} />
                            </ListItemAvatar>
@@ -81,7 +82,7 @@ const SearchBar = () => {
                         {i !== results.length - 1 && (
                            <Divider />
                         )}
-                     </>
+                     </a>
                   ))}
                </List>
             </div>
